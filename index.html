@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+/* ==============================================================================
+   BLOQUE 0: CONFIGURACIÓN TÉCNICA (Optimización Anti-Lag)
+   ============================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background: #f4f4f4; 
+            font-family: 'Segoe UI', sans-serif; 
+            padding: 10px;
+            margin: 0;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: block;
+        }
+
+/* ==============================================================================
+   BLOQUE 1: ESTILOS DEL BANNER (AJUSTE ULTRA FINO)
+   ============================================================================== */
+        .banner-electronica {
+            position: relative;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 5px 15px; 
+            border-radius: 10px;
+            text-align: center;
+            border-bottom: 3px solid #ffcc00;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px; /* Evita que se estire infinito en PC */
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            contain: layout;
+        }
+
+        .banner-electronica::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.12;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M0 0h1v1H0zm5 5h1v1H5z' fill='%23ffffff'/%3E%3C/svg%3E");
+        }
+
+        .banner-title { font-size: 17px; font-weight: 800; text-transform: uppercase; z-index: 1; line-height: 1.2; }
+        .banner-subtitle { font-size: 9px; font-family: monospace; z-index: 1; margin-bottom: 2px; opacity: 0.9; }
+        
+        .features { display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; z-index: 1; }
+        .feature-tag { 
+            background: rgba(255, 255, 255, 0.2); padding: 1px 6px; border-radius: 15px; 
+            font-size: 7.5px; border: 0.5px solid rgba(255, 255, 255, 0.3);
+            display: flex; align-items: center; gap: 3px;
+        }
+
+/* ==============================================================================
+   BLOQUE 2: ESTILOS DEL CATÁLOGO (Optimización de Desplazamiento)
+   ============================================================================== */
+.grid-container { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 15px; 
+    margin: 15px auto;
+    max-width: 1200px;
+}
+.card { 
+    background: #fff; 
+    border-radius: 12px; 
+    border: 1px solid #eee; 
+    text-align: center; 
+    overflow: hidden; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    /* Aceleración por hardware para scroll suave */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+        /* --- Optimización de Imágenes y Etiquetas --- */
+.image-container { 
+    position: relative; 
+    padding: 10px; 
+    height: 210px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    background: #fff;
+    contain: strict; /* Esto ayuda a que el navegador no recalcule el tamaño */
+}
+
+.image-container img { 
+    max-width: 85%; 
+    max-height: 85%; 
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast; /* Mejora la nitidez sin lag */
+}
+
+.badge-nuevo, .badge-semi { 
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    padding: 3px 10px; 
+    border-radius: 20px; 
+    font-size: 9px; 
+    font-weight: bold; 
+    color: white;
+    z-index: 2;
+    pointer-events: none; /* Evita que el toque del dedo se trabe en la etiqueta */
+}
+
+.badge-nuevo { background: #e74c3c; }
+.badge-semi { background: #0000ff; }
+        
+        .btn-whatsapp { 
+            background-color: #28a745; color: white; text-decoration: none; padding: 12px; 
+            border-radius: 8px; font-weight: bold; display: flex; align-items: center; 
+            justify-content: center; gap: 8px; margin: 10px; font-size: 14px;
+        }
+
+/* ==============================================================================
+   BLOQUE 3: ESTILOS DE REDES SOCIALES
+   ============================================================================== */
+        .social-footer { display: flex; justify-content: center; gap: 12px; margin: 20px 0; }
+        .social-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; text-decoration: none; }
+        .insta { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+        .wa-bus { background-color: #25D366; }
+        .fb { background-color: #1877F2; }
+        .tk { background-color: #000; }
+        .yt { background-color: #FF0000; }
+    </style>
+</head>
+<body>
+
+    <div class="banner-electronica">
+        <h1 class="banner-title">ElectroCell JM El Salvador</h1>
+        <p class="banner-subtitle">Taller de Reparación & Venta de Dispositivos</p>
+        <div class="features">
+            <div class="feature-tag"><i class="fas fa-check-circle"></i> Garantizados</div>
+            <div class="feature-tag"><i class="fas fa-microscope"></i> Revisión Técnica</div>
+            <div class="feature-tag"><i class="fas fa-tag"></i> Precios Accesibles</div>
+        </div>
+    </div>
+
+    <div class="grid-container">
+<!-- ==========================================
+     TARJETA NUMERO 1
+     ========================================== -->
+
+    <div class="card">
+        <div class="image-container">
+            <div class="badge-semi">SEMI-NUEVO</div>
+            <img src="https://walmartsv.vtexassets.com/arquivos/ids/767491-800-450?v=638883687331230000" alt="Samsung A06" loading="lazy" width="200" height="200">
+        </div>
+        <div style="padding: 10px;">
+            <h2 style="font-size: 18px; color: #003366; font-weight: bold;">Samsung Galaxy A06</h2>
+            <div style="font-size: 21px; font-weight: 800; margin: 5px 0;"><span style="font-size: 13px; text-decoration: line-through; color: #888;">$100.00</span> $90.00</div>
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; font-size: 10px; color: #555;">
+                <span><i class="fas fa-hdd" style="color: #3498db;"></i> 64GB</span>
+                <span><i class="fas fa-camera" style="color: #3498db;"></i> 50MP</span>
+                <span><i class="fas fa-battery-full" style="color: #3498db;"></i> 5000mAh</span>
+            </div>
+<!-- TELEFONO INCLUYE -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; padding: 8px; background: #fdfdfd; border-radius: 8px; border: 1px dashed #bbb;">
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-plug" style="color: #3498db; width: 12px;"></i> Cargador
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-shield-alt" style="color: #27ae60; width: 12px;"></i> Protector
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-mobile-alt" style="color: #e67e22; width: 12px;"></i> Templado
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-check-circle" style="color: #9b59b6; width: 12px;"></i> Garantía 6 Meses
+    </div>
+</div>
+            <a href="https://wa.me/50370555683" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Consultar WhatsApp</a>
+        </div>
+    </div>
+<!-- ==========================================
+     TARJETA NUMERO 2
+     ========================================== -->
+
+    <div class="card">
+        <div class="image-container">
+            <div class="badge-nuevo">NUEVO</div>
+            <img src="https://walmartsv.vtexassets.com/arquivos/ids/767491-800-450?v=638883687331230000" alt="Samsung A06" loading="lazy" width="200" height="200">
+        </div>
+        <div style="padding: 10px;">
+            <h2 style="font-size: 18px; color: #003366; font-weight: bold;">ZTE Blade A5 2020</h2>
+            <div style="font-size: 21px; font-weight: 800; margin: 5px 0;"><span style="font-size: 13px; text-decoration: line-through; color: #888;">$125.00</span> $100.00</div>
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; font-size: 10px; color: #555;">
+                <span><i class="fas fa-hdd" style="color: #3498db;"></i> 32GB</span>
+                <span><i class="fas fa-camera" style="color: #3498db;"></i> 13MP</span>
+                <span><i class="fas fa-battery-full" style="color: #3498db;"></i> 3200mAh</span>
+            </div>
+<!-- TELEFONO INCLUYE -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; padding: 8px; background: #fdfdfd; border-radius: 8px; border: 1px dashed #bbb;">
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-plug" style="color: #3498db; width: 12px;"></i> Cargador
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-shield-alt" style="color: #27ae60; width: 12px;"></i> Protector
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-mobile-alt" style="color: #e67e22; width: 12px;"></i> Templado
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-check-circle" style="color: #9b59b6; width: 12px;"></i> Garantía 6 Meses
+    </div>
+</div>
+            <a href="https://wa.me/50370555683" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Consultar WhatsApp</a>
+        </div>
+    </div>
+<!-- ==========================================
+     TARJETA NUMERO 3
+     ========================================== -->
+
+    <div class="card">
+        <div class="image-container">
+            <div class="badge-nuevo">NUEVO</div>
+            <img src="https://walmartsv.vtexassets.com/arquivos/ids/767491-800-450?v=638883687331230000" alt="Samsung A06" loading="lazy" width="200" height="200">
+        </div>
+        <div style="padding: 10px;">
+            <h2 style="font-size: 18px; color: #003366; font-weight: bold;">ZTE Blade A5 2020</h2>
+            <div style="font-size: 21px; font-weight: 800; margin: 5px 0;"><span style="font-size: 13px; text-decoration: line-through; color: #888;">$125.00</span> $100.00</div>
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; font-size: 10px; color: #555;">
+                <span><i class="fas fa-hdd" style="color: #3498db;"></i> 32GB</span>
+                <span><i class="fas fa-camera" style="color: #3498db;"></i> 13MP</span>
+                <span><i class="fas fa-battery-full" style="color: #3498db;"></i> 4000mAh</span>
+            </div>
+<!-- TELEFONO INCLUYE -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; padding: 8px; background: #fdfdfd; border-radius: 8px; border: 1px dashed #bbb;">
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-plug" style="color: #3498db; width: 12px;"></i> Cargador
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-shield-alt" style="color: #27ae60; width: 12px;"></i> Protector
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-mobile-alt" style="color: #e67e22; width: 12px;"></i> Templado
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-check-circle" style="color: #9b59b6; width: 12px;"></i> Garantía 6 Meses
+    </div>
+</div>
+            <a href="https://wa.me/50370555683" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Consultar WhatsApp</a>
+        </div>
+    </div>
+<!-- ==========================================
+     TARJETA NUMERO 4
+     ========================================== -->
+
+    <div class="card">
+        <div class="image-container">
+            <div class="badge-nuevo">NUEVO</div>
+            <img src="https://walmartsv.vtexassets.com/arquivos/ids/767491-800-450?v=638883687331230000" alt="Samsung A06" loading="lazy" width="200" height="200">
+        </div>
+        <div style="padding: 10px;">
+            <h2 style="font-size: 18px; color: #003366; font-weight: bold;">ZTE Blade A5 2020</h2>
+            <div style="font-size: 21px; font-weight: 800; margin: 5px 0;"><span style="font-size: 13px; text-decoration: line-through; color: #888;">$125.00</span> $100.00</div>
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; font-size: 10px; color: #555;">
+                <span><i class="fas fa-hdd" style="color: #3498db;"></i> 32GB</span>
+                <span><i class="fas fa-camera" style="color: #3498db;"></i> 13MP</span>
+                <span><i class="fas fa-battery-full" style="color: #3498db;"></i> 4000mAh</span>
+            </div>
+<!-- TELEFONO INCLUYE -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; padding: 8px; background: #fdfdfd; border-radius: 8px; border: 1px dashed #bbb;">
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-plug" style="color: #3498db; width: 12px;"></i> Cargador
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-shield-alt" style="color: #27ae60; width: 12px;"></i> Protector
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-mobile-alt" style="color: #e67e22; width: 12px;"></i> Templado
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-check-circle" style="color: #9b59b6; width: 12px;"></i> Garantía 6 Meses
+    </div>
+</div>
+            <a href="https://wa.me/50370555683" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Consultar WhatsApp</a>
+        </div>
+    </div>
+<!-- ==========================================
+     TARJETA NUMERO 5
+     ========================================== -->
+
+    <div class="card">
+        <div class="image-container">
+            <div class="badge-nuevo">NUEVO</div>
+            <img src="https://walmartsv.vtexassets.com/arquivos/ids/767491-800-450?v=638883687331230000" alt="Samsung A06" loading="lazy" width="200" height="200">
+        </div>
+        <div style="padding: 10px;">
+            <h2 style="font-size: 18px; color: #003366; font-weight: bold;">ZTE Blade A5 2020</h2>
+            <div style="font-size: 21px; font-weight: 800; margin: 5px 0;"><span style="font-size: 13px; text-decoration: line-through; color: #888;">$125.00</span> $100.00</div>
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; font-size: 10px; color: #555;">
+                <span><i class="fas fa-hdd" style="color: #3498db;"></i> 32GB</span>
+                <span><i class="fas fa-camera" style="color: #3498db;"></i> 13MP</span>
+                <span><i class="fas fa-battery-full" style="color: #3498db;"></i> 4000mAh</span>
+            </div>
+<!-- TELEFONO INCLUYE -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; padding: 8px; background: #fdfdfd; border-radius: 8px; border: 1px dashed #bbb;">
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-plug" style="color: #3498db; width: 12px;"></i> Cargador
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-shield-alt" style="color: #27ae60; width: 12px;"></i> Protector
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-mobile-alt" style="color: #e67e22; width: 12px;"></i> Templado
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-check-circle" style="color: #9b59b6; width: 12px;"></i> Garantía 6 Meses
+    </div>
+</div>
+            <a href="https://wa.me/50370555683" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Consultar WhatsApp</a>
+        </div>
+    </div>
+<!-- ==========================================
+     TARJETA NUMERO 6
+     ========================================== -->
+
+    <div class="card">
+        <div class="image-container">
+            <div class="badge-nuevo">NUEVO</div>
+            <img src="https://walmartsv.vtexassets.com/arquivos/ids/767491-800-450?v=638883687331230000" alt="Samsung A06" loading="lazy" width="200" height="200">
+        </div>
+        <div style="padding: 10px;">
+            <h2 style="font-size: 18px; color: #003366; font-weight: bold;">ZTE Blade A5 2020</h2>
+            <div style="font-size: 21px; font-weight: 800; margin: 5px 0;"><span style="font-size: 13px; text-decoration: line-through; color: #888;">$125.00</span> $100.00</div>
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 12px; font-size: 10px; color: #555;">
+                <span><i class="fas fa-hdd" style="color: #3498db;"></i> 32GB</span>
+                <span><i class="fas fa-camera" style="color: #3498db;"></i> 13MP</span>
+                <span><i class="fas fa-battery-full" style="color: #3498db;"></i> 4000mAh</span>
+            </div>
+<!-- TELEFONO INCLUYE -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; padding: 8px; background: #fdfdfd; border-radius: 8px; border: 1px dashed #bbb;">
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-plug" style="color: #3498db; width: 12px;"></i> Cargador
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-shield-alt" style="color: #27ae60; width: 12px;"></i> Protector
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-mobile-alt" style="color: #e67e22; width: 12px;"></i> Templado
+    </div>
+    <div style="font-size: 10px; color: #333; text-align: left;">
+        <i class="fas fa-check-circle" style="color: #9b59b6; width: 12px;"></i> Garantía 6 Meses
+    </div>
+</div>
+            <a href="https://wa.me/50370555683" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Consultar WhatsApp</a>
+        </div>
+    </div>
+
+</div>
+<!-- ==========================================
+     ICONOS DE REDES SOCIALES
+     ========================================== -->
+
+    <div class="social-footer">
+        <a href="#" class="social-icon insta"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/50370555683" class="social-icon wa-bus"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon tk"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="social-icon yt"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <div style="color: #333; font-weight: bold; font-size: 13px;">Copyright © Powered By ElectroCell JM ES 2025</div>
+        <div style="color: #777; font-size: 10px; text-transform: uppercase; margin: 4px 0;">TODOS LOS DERECHOS RESERVADOS</div>
+        <a href="#" style="font-size: 11px; color: #003366; text-decoration: underline;">Aviso Legal</a>
+    </div>
+
+    <div id="aviso-final-construccion" style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 8px; text-align: center; border: 1px dashed #d9534f; margin: 15px 10px; font-weight: bold; font-size: 11px;">
+        ⚠️ INTERFAZ EN CONSTRUCCIÓN - PRÓXIMAMENTE DISPONIBLE
+    </div>
+
+    <div id="container-prueba-electrocell" style="background-color: #e7f3ff; color: #004085; padding: 10px; border-radius: 8px; border: 1px solid #b8daff; text-align: center; font-size: 10px; margin: 0 10px;">
+        <strong>LA INFORMACIÓN Y PRECIOS MOSTRADOS SON ÚNICAMENTE DE PRUEBA</strong>
+        <p style="margin-top:5px;">Actualizado: <span id="live-clock" style="font-weight: bold; color: #007bff;"></span></p>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+            const clockElement = document.getElementById('live-clock');
+            if(clockElement) { clockElement.textContent = now.toLocaleString('es-SV', options); }
+        }
+        updateClock();
+        setInterval(updateClock, 60000);
+    </script>
+</body>
+</html>
