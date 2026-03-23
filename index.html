@@ -58,318 +58,320 @@
 
         <div class="flex flex-1 items-center justify-end gap-2 sm:gap-6 text-[10px] sm:text-sm font-medium uppercase tracking-widest">
         
-        <div class="relative group flex items-center h-full">
-    <button class="flex items-center gap-1 text-white group-hover:text-blue-400 transition text-[9px] sm:text-sm font-bold uppercase tracking-widest shrink-0">
-        <i class="fas fa-tags text-blue-500 text-[10px] sm:text-xs"></i>
-        <span>Marcas</span>
-        <i class="fas fa-chevron-down text-[7px] sm:text-[8px] opacity-50 group-hover:rotate-180 transition-transform"></i>
-    </button>
+    <div class="relative group flex items-center h-full">
+        <button class="flex items-center gap-1 text-white group-hover:text-blue-400 transition text-[9px] sm:text-sm font-bold uppercase tracking-widest shrink-0 whitespace-nowrap px-2">
+            <i class="fas fa-tags text-blue-500 text-[10px] sm:text-xs"></i>
+            <span>Marcas</span>
+            <i class="fas fa-chevron-down text-[7px] sm:text-[8px] opacity-50 group-hover:rotate-180 transition-transform"></i>
+        </button>
 
-    <div class="absolute top-full right-0 mt-2 w-48 xs:w-56 bg-slate-900 border border-slate-800 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100]">
-        <div class="flex flex-col max-h-[70vh] overflow-y-auto custom-scrollbar">
-            
-            <style>
-    /* Reset de flecha nativa */
-    details summary::-webkit-details-marker { display: none; }
-    details[open] summary i.fa-chevron-down { transform: rotate(180deg); }
-    
-    /* TITULO DE MARCA */
-    .brand-title { 
-        @apply w-full px-4 py-3 text-[11px] sm:text-xs text-white hover:bg-slate-800 transition flex items-center justify-between border-b border-slate-800/60 font-black uppercase tracking-tighter cursor-pointer list-none; 
-    }
-    
-    /* SERVICIOS: ESTILO ULTRA FINO PROFESIONAL */
-    .service-link { 
-        display: block !important;
-        padding: 6px 40px !important;
-        /* Forzamos el peso 100 (fino) y tamaño mínimo */
-        font-weight: 100 !important; 
-        font-size: 8px !important;
-        letter-spacing: 0.1em !important;
-        text-transform: uppercase !important;
-        color: #94a3b8 !important; /* slate-400 */
-        transition: all 0.2s ease;
-        border-left: 2px solid transparent;
-    }
+        <div class="absolute top-full right-0 mt-2 min-w-[200px] w-max max-w-[300px] bg-slate-900 border border-slate-800 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] overflow-hidden">
+            <div class="flex flex-col max-h-[70vh] overflow-y-auto custom-scrollbar">
+                
+                <style>
+                    /* Reset de flecha nativa */
+                    details summary::-webkit-details-marker { display: none; }
+                    details[open] summary i.fa-chevron-down { transform: rotate(180deg); }
+                    
+                    /* TITULO DE MARCA: Se añadió padding-left: 3.5rem para alinear con tu línea roja */
+                    .brand-title { 
+                        @apply w-full py-3 pr-4 text-[11px] sm:text-xs text-white hover:bg-slate-800 transition flex items-center justify-between border-b border-slate-800/60 font-black uppercase tracking-tighter cursor-pointer list-none whitespace-nowrap; 
+                        padding-left: 3.5rem !important;
+                    }
+                    
+                    /* SERVICIOS: Se ajustó el padding para mantener la jerarquía visual */
+                    .service-link { 
+                        display: block !important;
+                        padding: 8px 30px 8px 5rem !important;
+                        font-weight: 100 !important; 
+                        font-size: 8px !important;
+                        letter-spacing: 0.1em !important;
+                        text-transform: uppercase !important;
+                        color: #94a3b8 !important; 
+                        transition: all 0.2s ease;
+                        border-left: 2px solid transparent;
+                        white-space: nowrap !important;
+                    }
 
-    .service-link:hover {
-        color: #60a5fa !important; /* blue-400 */
-        background-color: rgba(30, 41, 59, 0.5) !important;
-        border-left-color: #2563eb !important;
-        font-weight: 200 !important; /* Un toque más de peso al pasar el mouse */
-    }
+                    .service-link:hover {
+                        color: #60a5fa !important; 
+                        background-color: rgba(30, 41, 59, 0.5) !important;
+                        border-left-color: #2563eb !important;
+                        font-weight: 300 !important; 
+                    }
 
-    @media (min-width: 640px) {
-        .service-link { font-size: 9px !important; }
-    }
-</style>
+                    @media (min-width: 640px) {
+                        .service-link { font-size: 9px !important; }
+                    }
+                </style>
 
-<details name="marcas" class="group/item border-b border-slate-800/40">
-    <summary class="brand-title">
-        <span class="flex items-center gap-2"><i class="fab fa-android text-blue-400 w-4"></i> SAMSUNG</span>
-        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-    </summary>
-    <div class="bg-slate-950/50 py-1">
-        <a href="#" class="service-link">Full Flash</a>
-        <a href="#" class="service-link">Unlock Network</a>
-        <a href="#" class="service-link">FRP Worldwide</a>
-        <a href="#" class="service-link">Bypass MDM</a>
-        <a href="#" class="service-link">IMEI Repair</a>
-    </div>
-</details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fab fa-android text-blue-400 w-4 text-center"></i> SAMSUNG</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fab fa-apple text-slate-100 w-4"></i> APPLE</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fab fa-apple text-slate-100 w-4 text-center"></i> APPLE</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-microchip text-orange-500 w-4"></i> XIAOMI</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-microchip text-orange-500 w-4 text-center"></i> XIAOMI</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-leaf text-red-500 w-4"></i> HUAWEI</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-leaf text-red-500 w-4 text-center"></i> HUAWEI</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-mobile-alt text-blue-500 w-4"></i> MOTOROLA</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-mobile-alt text-blue-500 w-4 text-center"></i> MOTOROLA</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-tv text-red-600 w-4"></i> TCL</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-tv text-red-600 w-4 text-center"></i> TCL</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-bolt text-yellow-400 w-4"></i> REALME</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-bolt text-yellow-400 w-4 text-center"></i> REALME</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-medal text-blue-300 w-4"></i> HONOR</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-medal text-blue-300 w-4 text-center"></i> HONOR</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-signal text-blue-600 w-4"></i> ZTE</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-signal text-blue-600 w-4 text-center"></i> ZTE</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-circle-notch text-green-500 w-4"></i> OPPO</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-circle-notch text-green-500 w-4 text-center"></i> OPPO</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-v text-blue-400 w-4"></i> VIVO</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-v text-blue-400 w-4 text-center"></i> VIVO</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-plus text-red-500 w-4"></i> ONEPLUS</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-plus text-red-500 w-4 text-center"></i> ONEPLUS</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fab fa-google text-blue-400 w-4"></i> PIXEL</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fab fa-google text-blue-400 w-4 text-center"></i> PIXEL</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-laptop text-blue-700 w-4"></i> ASUS</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-laptop text-blue-700 w-4 text-center"></i> ASUS</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-broadcast-tower text-blue-400 w-4"></i> ALCATEL</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-broadcast-tower text-blue-400 w-4 text-center"></i> ALCATEL</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-infinity text-green-400 w-4"></i> INFINIX</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-infinity text-green-400 w-4 text-center"></i> INFINIX</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-microchip text-blue-400 w-4"></i> TECNO</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-microchip text-blue-400 w-4 text-center"></i> TECNO</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item border-b border-slate-800/40">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-mobile text-orange-600 w-4"></i> BMOBILE</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item border-b border-slate-800/40">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-mobile text-orange-600 w-4 text-center"></i> BMOBILE</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
-            <details name="marcas" class="group/item">
-                <summary class="brand-title">
-                    <span class="flex items-center gap-2"><i class="fas fa-camera text-slate-400 w-4"></i> SONY</span>
-                    <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
-                </summary>
-                <div class="bg-slate-950/50 py-1">
-                    <a href="#" class="service-link">Full Flash</a>
-                    <a href="#" class="service-link">Unlock Network</a>
-                    <a href="#" class="service-link">FRP Worldwide</a>
-                    <a href="#" class="service-link">Bypass MDM</a>
-                    <a href="#" class="service-link">IMEI Repair</a>
-                </div>
-            </details>
+                <details name="marcas" class="group/item">
+                    <summary class="brand-title">
+                        <span class="flex items-center gap-2"><i class="fas fa-camera text-slate-400 w-4 text-center"></i> SONY</span>
+                        <i class="fas fa-chevron-down text-[8px] opacity-40 transition-transform"></i>
+                    </summary>
+                    <div class="bg-slate-950/50 py-1">
+                        <a href="#" class="service-link">Full Flash</a>
+                        <a href="#" class="service-link">Unlock Network</a>
+                        <a href="#" class="service-link">FRP Worldwide</a>
+                        <a href="#" class="service-link">Bypass MDM</a>
+                        <a href="#" class="service-link">IMEI Repair</a>
+                    </div>
+                </details>
 
+            </div>
         </div>
     </div>
 </div>
