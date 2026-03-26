@@ -448,39 +448,102 @@
      Licencias Digitales Activaciones
      ========================================== -->
 
-    <section id="servicios" class="max-w-7xl mx-auto px-6 pb-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <div id="contenedor-activaciones" class="w-full">
+<section id="servicios" class="max-w-7xl mx-auto px-6 pb-24">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+<div id="contenedor-activaciones" class="w-full">
+
+    <!-- TARJETA PRINCIPAL -->
     <div id="tarjeta-activaciones" class="glass-card p-8 rounded-2xl border border-blue-500/20 hover:border-blue-500/50 transition-all group">
+        
+        <!-- ICONO -->
         <div class="w-14 h-14 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-500 transition-colors">
             <i class="fas fa-key text-2xl text-blue-500 group-hover:text-white"></i>
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white italic">Licencias Digitales Activaciones</h3>
-        <p class="text-sm text-slate-400 mb-6 italic">Renovaciones y créditos para UnlockTool, DFT Pro y más.</p>
+
+        <!-- TITULO -->
+        <h3 class="text-xl font-bold mb-3 text-white italic">
+            Licencias Digitales Activaciones
+        </h3>
+
+        <!-- DESCRIPCIÓN -->
+        <p class="text-sm text-slate-400 mb-6 italic">
+            Renovaciones y créditos para UnlockTool, TSMTool, DFT Pro y más.
+        </p>
+
+        <!-- BOTON -->
         <button onclick="abrirLicencias()" class="text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-2 hover:text-white transition">
             Ver Precios <i class="fas fa-arrow-right"></i>
         </button>
     </div>
 
-    
+    <!-- 🔥 MENU FULL SCREEN (AQUÍ ESTÁ EL FIX REAL) -->
+    <div id="menu-licencias" class="hidden fixed inset-0 w-full h-full bg-slate-950 z-50 overflow-y-auto p-6 space-y-10 animate-fade-in">
 
-    <div id="menu-licencias" class="hidden space-y-10 animate-fade-in">
-    <button onclick="cerrarLicencias()" class="text-blue-400 text-[10px] font-black uppercase mb-4 flex items-center gap-2 hover:text-white transition-colors">
-        <i class="fas fa-chevron-left"></i> Volver
-    </button>
+        <!-- VOLVER -->
+        <button onclick="cerrarLicencias()" class="text-blue-400 text-[10px] font-black uppercase mb-4 flex items-center gap-2 hover:text-white transition-colors">
+            <i class="fas fa-chevron-left"></i> Volver
+        </button>
 
-    <div class="max-w-2xl mx-auto mt-16 mb-20 px-4">
-        <div class="relative group">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-            <div class="relative flex items-center bg-slate-900 border border-blue-500/30 rounded-xl overflow-hidden shadow-2xl">
-                <div class="pl-5">
-                    <i class="fas fa-search text-blue-500/70 text-lg"></i>
+        <!-- BUSCADOR -->
+        <div class="max-w-2xl mx-auto mt-10 mb-16 px-4">
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                
+                <div class="relative flex items-center bg-slate-900 border border-blue-500/30 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="pl-5">
+                        <i class="fas fa-search text-blue-500/70 text-lg"></i>
+                    </div>
+
+                    <input type="text" id="buscador-licencias" placeholder="Buscar licencia..." 
+                    class="w-full bg-transparent border-none text-white px-5 py-5 text-base focus:ring-0 outline-none placeholder:text-slate-500 font-medium">
                 </div>
-                <input type="text" id="buscador-licencias" placeholder="Buscar licencia o créditos..." class="w-full bg-transparent border-none text-white px-5 py-5 text-base focus:ring-0 outline-none placeholder:text-slate-500 font-medium">
             </div>
         </div>
-    </div>
+
+        <!-- ITEMS FULL WIDTH -->
+        <div class="max-w-4xl mx-auto w-full">
+
+            <!-- ITEM 1 -->
+            <div class="tarjeta-licencia relative group bg-slate-900/50 border border-slate-800 p-4 rounded-xl mb-4 w-full">
+                
+                <!-- BADGE -->
+                <div class="absolute -top-3 -left-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded-md shadow-lg animate-bounce z-20">
+                    ⚠️ El precio se Actualiza Constantemente
+                </div>
+
+                <!-- CONTENIDO -->
+                <div class="flex items-center justify-between w-full">
+
+                    <!-- IZQUIERDA -->
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.ebayimg.com/images/g/YNIAAOSw8xFmFt-Z/s-l400.png" class="w-10 h-10 object-contain bg-white rounded-lg p-1" alt="UnlockTool">
+                        
+                        <div>
+                            <h4 class="text-white font-bold text-sm italic">
+                                UnlockTool <span class="text-blue-400 text-xs">1 AÑO</span>
+                            </h4>
+
+                            <div class="mt-1 inline-flex items-center bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded text-[11px] font-medium text-green-400">
+                                ⚡ Fast 1 a 15 minutos
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DERECHA -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-white font-bold text-lg">$55.00</span>
+
+                        <a href="https://wa.me/18299778417" class="bg-[#25D366] p-2 rounded-lg text-white hover:scale-110 transition-all">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
         
 <!-- ==========================================
      TARJETA NUMERO 1 UnlockTool
@@ -1006,36 +1069,311 @@
     </div>
 </div>
 
+<!-- ==========================================
+     Renta de Tools / Box / Dongles
+     ========================================== -->
 
-            <div class="glass-card p-8 rounded-2xl hover:border-emerald-500/50 transition group">
-                <div class="w-14 h-14 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-emerald-500 transition">
-                    <i class="fas fa-microchip text-2xl text-emerald-500 group-hover:text-white"></i>
+
+<div id="contenedor-tools" class="w-full">
+
+    <!-- TARJETA PRINCIPAL -->
+    <div id="tarjeta-tools" class="glass-card p-8 rounded-2xl border border-amber-500/20 hover:border-amber-500/50 transition-all group">
+        
+        <!-- ICONO -->
+        <div class="w-14 h-14 bg-amber-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-amber-500 transition-colors">
+            <i class="fas fa-clock text-2xl text-amber-500 group-hover:text-white"></i>
+        </div>
+
+        <!-- TITULO -->
+        <h3 class="text-xl font-bold mb-3 text-white italic">
+            Renta de Tools/Box/Dongles
+        </h3>
+
+        <!-- DESCRIPCIÓN -->
+        <p class="text-sm text-slate-400 mb-6 italic">
+            Alquiler de herramientas físicas y digitales por horas o días (Pandora, Octoplus, Z3X).
+        </p>
+
+        <!-- BOTON -->
+        <button onclick="abrirTools()" class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-2 hover:text-white transition">
+            Ver Disponibilidad <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- 🔥 MENU FULL SCREEN (AQUÍ ESTÁ EL FIX REAL) -->
+    <div id="menu-tools" class="hidden fixed inset-0 w-full h-full bg-slate-950 z-50 overflow-y-auto p-6 space-y-10 animate-fade-in">
+
+        <!-- VOLVER -->
+        <button onclick="cerrarTools()" class="text-amber-400 text-[10px] font-black uppercase mb-4 flex items-center gap-2 hover:text-white transition-colors">
+            <i class="fas fa-chevron-left"></i> Volver
+        </button>
+
+        <!-- BUSCADOR -->
+        <div class="max-w-2xl mx-auto mt-10 mb-16 px-4">
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                
+                <div class="relative flex items-center bg-slate-900 border border-amber-500/30 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="pl-5">
+                        <i class="fas fa-search text-amber-500/70 text-lg"></i>
+                    </div>
+
+                    <input type="text" id="buscador-tools" placeholder="Buscar herramienta..." 
+                    class="w-full bg-transparent border-none text-white px-5 py-5 text-base focus:ring-0 outline-none placeholder:text-slate-500 font-medium">
                 </div>
-                <h3 class="text-xl font-bold mb-3">Servicios IMEI</h3>
-                <p class="text-sm text-slate-400 mb-6">Limpieza, Registros IMEI/SN y Desbloqueos de red vía IMEI.</p>
-                <button class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Consultar <i class="fas fa-arrow-right ml-2"></i></button>
             </div>
+        </div>
 
-            <div class="glass-card p-8 rounded-2xl hover:border-purple-500/50 transition group">
-                <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-500 transition">
-                    <i class="fas fa-desktop text-2xl text-purple-500 group-hover:text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Soporte Remoto Worldwide</h3>
-                <p class="text-sm text-slate-400 mb-6">Desbloqueos de red directos por servidor vía USB Redirector o AnyDesk en tiempo real.</p>
-                <button class="text-xs font-bold text-purple-400 uppercase tracking-widest">Agendar <i class="fas fa-arrow-right ml-2"></i></button>
-            </div>
+        <!-- ITEMS FULL WIDTH -->
+        <div class="max-w-4xl mx-auto w-full">
 
-            <div class="glass-card p-8 rounded-2xl hover:border-amber-500/50 transition group">
-                <div class="w-14 h-14 bg-amber-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-amber-500 transition">
-                    <i class="fas fa-clock text-2xl text-amber-500 group-hover:text-white"></i>
+            <!-- ITEM 1 -->
+            <div class="tarjeta-tools relative group bg-slate-900/50 border border-slate-800 p-4 rounded-xl mb-4 w-full">
+                
+                <!-- BADGE -->
+                <div class="absolute -top-3 -left-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded-md shadow-lg animate-bounce z-20">
+                    ⚠️ Costo puede variar
                 </div>
-                <h3 class="text-xl font-bold mb-3">Renta de Tools/Box/Dongles</h3>
-                <p class="text-sm text-slate-400 mb-6">Alquiler de herramientas físicas y digitales por horas o días (Pandora, Hydra, Z3X).</p>
-                <button class="text-xs font-bold text-amber-400 uppercase tracking-widest">Disponibilidad <i class="fas fa-arrow-right ml-2"></i></button>
+
+                <!-- CONTENIDO -->
+                <div class="flex items-center justify-between w-full">
+
+                    <!-- IZQUIERDA -->
+                    <div class="flex items-center gap-4">
+                        <img src="https://via.placeholder.com/40" class="w-10 h-10 object-contain bg-white rounded-lg p-1" alt="Pandora">
+                        
+                        <div>
+                            <h4 class="text-white font-bold text-sm italic">
+                                Pandora Tool Digital <span class="text-amber-400 text-xs">48 HORAS</span>
+                            </h4>
+
+                            <div class="mt-1 inline-flex items-center bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded text-[11px] font-medium text-green-400">
+                                ⚡ Acceso inmediato
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DERECHA -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-white font-bold text-lg">$15.00</span>
+
+                        <a href="https://wa.me/18299778417" class="bg-[#25D366] p-2 rounded-lg text-white hover:scale-110 transition-all">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                </div>
             </div>
 
         </div>
-    </section>
+
+    </div>
+</div>
+
+
+<!-- ==========================================
+     Soporte Remoto Worldwide
+     ========================================== -->
+
+
+<div id="contenedor-soporte" class="w-full">
+
+    <!-- TARJETA PRINCIPAL -->
+    <div id="tarjeta-soporte" class="glass-card p-8 rounded-2xl border border-purple-500/20 hover:border-purple-500/50 transition-all group">
+        
+        <!-- ICONO -->
+        <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-500 transition-colors">
+            <i class="fas fa-desktop text-2xl text-purple-500 group-hover:text-white"></i>
+        </div>
+
+        <!-- TITULO -->
+        <h3 class="text-xl font-bold mb-3 text-white italic">
+            Soporte Remoto Worldwide
+        </h3>
+
+        <!-- DESCRIPCIÓN -->
+        <p class="text-sm text-slate-400 mb-6 italic">
+            Desbloqueos y soporte remoto en tiempo real vía USB Redirector o AnyDesk.
+        </p>
+
+        <!-- BOTON -->
+        <button onclick="abrirSoporte()" class="text-xs font-bold text-purple-400 uppercase tracking-widest flex items-center gap-2 hover:text-white transition">
+            Agendar <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- MENU FULL SCREEN -->
+    <div id="menu-soporte" class="hidden fixed inset-0 w-full h-full bg-slate-950 z-50 overflow-y-auto p-6 space-y-10 animate-fade-in">
+
+        <!-- VOLVER -->
+        <button onclick="cerrarSoporte()" class="text-purple-400 text-[10px] font-black uppercase mb-4 flex items-center gap-2 hover:text-white transition-colors">
+            <i class="fas fa-chevron-left"></i> Volver
+        </button>
+
+        <!-- BUSCADOR -->
+        <div class="max-w-2xl mx-auto mt-10 mb-16 px-4">
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                
+                <div class="relative flex items-center bg-slate-900 border border-purple-500/30 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="pl-5">
+                        <i class="fas fa-search text-purple-500/70 text-lg"></i>
+                    </div>
+
+                    <input type="text" id="buscador-soporte" placeholder="Buscar servicio remoto..." 
+                    class="w-full bg-transparent border-none text-white px-5 py-5 text-base focus:ring-0 outline-none placeholder:text-slate-500 font-medium">
+                </div>
+            </div>
+        </div>
+
+        <!-- ITEMS -->
+        <div class="max-w-4xl mx-auto w-full">
+
+            <!-- ITEM 1 -->
+            <div class="tarjeta-soporte relative group bg-slate-900/50 border border-slate-800 p-4 rounded-xl mb-4 w-full">
+                
+                <!-- BADGE -->
+                <div class="absolute -top-3 -left-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded-md shadow-lg animate-bounce z-20">
+                    ⚡ Disponible ahora
+                </div>
+
+                <div class="flex items-center justify-between w-full">
+
+                    <!-- IZQUIERDA -->
+                    <div class="flex items-center gap-4">
+                        <img src="https://via.placeholder.com/40" class="w-10 h-10 object-contain bg-white rounded-lg p-1" alt="Soporte">
+                        
+                        <div>
+                            <h4 class="text-white font-bold text-sm italic">
+                                Unlock Network Samsung JDM/CPID/CARRIER RELOCK <span class="text-purple-400 text-xs">POR REMOTO</span>
+                            </h4>
+
+                            <div class="mt-1 inline-flex items-center bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded text-[11px] font-medium text-green-400">
+                                ⚡ Conexión inmediata
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DERECHA -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-white font-bold text-lg">$10.00 a $75.00</span>
+
+                        <a href="https://wa.me/18299778417" class="bg-[#25D366] p-2 rounded-lg text-white hover:scale-110 transition-all">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ==========================================
+     Servicios IMEI
+     ========================================== -->
+
+
+<div id="contenedor-imei" class="w-full">
+
+    <!-- TARJETA PRINCIPAL -->
+    <div id="tarjeta-imei" class="glass-card p-8 rounded-2xl border border-emerald-500/20 hover:border-emerald-500/50 transition-all group">
+        
+        <!-- ICONO -->
+        <div class="w-14 h-14 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-emerald-500 transition-colors">
+            <i class="fas fa-microchip text-2xl text-emerald-500 group-hover:text-white"></i>
+        </div>
+
+        <!-- TITULO -->
+        <h3 class="text-xl font-bold mb-3 text-white italic">
+            Servicios IMEI
+        </h3>
+
+        <!-- DESCRIPCIÓN -->
+        <p class="text-sm text-slate-400 mb-6 italic">
+            Limpieza, registros IMEI/SN y desbloqueos de red vía IMEI.
+        </p>
+
+        <!-- BOTON -->
+        <button onclick="abrirIMEI()" class="text-xs font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-2 hover:text-white transition">
+            Consultar <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- 🔥 MENU FULL SCREEN -->
+    <div id="menu-imei" class="hidden fixed inset-0 w-full h-full bg-slate-950 z-50 overflow-y-auto p-6 space-y-10 animate-fade-in">
+
+        <!-- VOLVER -->
+        <button onclick="cerrarIMEI()" class="text-emerald-400 text-[10px] font-black uppercase mb-4 flex items-center gap-2 hover:text-white transition-colors">
+            <i class="fas fa-chevron-left"></i> Volver
+        </button>
+
+        <!-- BUSCADOR -->
+        <div class="max-w-2xl mx-auto mt-10 mb-16 px-4">
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                
+                <div class="relative flex items-center bg-slate-900 border border-emerald-500/30 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="pl-5">
+                        <i class="fas fa-search text-emerald-500/70 text-lg"></i>
+                    </div>
+
+                    <input type="text" id="buscador-imei" placeholder="Buscar servicio IMEI..." 
+                    class="w-full bg-transparent border-none text-white px-5 py-5 text-base focus:ring-0 outline-none placeholder:text-slate-500 font-medium">
+                </div>
+            </div>
+        </div>
+
+        <!-- ITEMS -->
+        <div class="max-w-4xl mx-auto w-full">
+
+            <!-- ITEM 1 -->
+            <div class="tarjeta-imei relative group bg-slate-900/50 border border-slate-800 p-4 rounded-xl mb-4 w-full">
+                
+                <!-- BADGE -->
+                <div class="absolute -top-3 -left-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded-md shadow-lg animate-bounce z-20">
+                    ⚡ Proceso rápido-Costo variable po modelo
+                </div>
+
+                <div class="flex items-center justify-between w-full">
+
+                    <!-- IZQUIERDA -->
+                    <div class="flex items-center gap-4">
+                        <img src="https://via.placeholder.com/40" class="w-10 h-10 object-contain bg-white rounded-lg p-1" alt="IMEI">
+                        
+                        <div>
+                            <h4 class="text-white font-bold text-sm italic">
+                                    Motorola | FACTORY ENABLE / FRP / MDM | XT21 / XT22 / XT23 — F4/F2 <span class="text-emerald-400 text-xs">WORLDWIDE</span>
+                            </h4>
+
+                            <div class="mt-1 inline-flex items-center bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded text-[11px] font-medium text-green-400">
+                                ⚡ Proceso rápido-Costo variable po modelo
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DERECHA -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-white font-bold text-lg">$20.00 a 50.00</span>
+
+                        <a href="https://wa.me/18299778417" class="bg-[#25D366] p-2 rounded-lg text-white hover:scale-110 transition-all">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</div> <!-- ✅ CIERRE GRID -->
+</section> <!-- ✅ CIERRE SECTION -->
 
     <footer id="contacto" class="border-t border-slate-800 bg-slate-900/80 py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
@@ -1064,7 +1402,7 @@
             </div>
             <div>
                 <h4 class="text-amber-500 font-black uppercase tracking-widest text-[10px] italic">Interfaz en Construcción</h4>
-                <p class="text-slate-400 text-[11px]">Actualizando módulos de licencias y servicios IMEI.</p>
+                <p class="text-slate-400 text-[11px]">Actualizando módulos-Multiples Errores.</p>
             </div>
         </div>
 
@@ -1079,33 +1417,7 @@
     </footer>
 
 <script>
-        function abrirLicencias() {
-            // Ocultar las otras 3 categorías principales para dar espacio
-            const tarjetas = document.querySelectorAll('#servicios .grid > div');
-            tarjetas.forEach(t => {
-                if(t.id !== 'contenedor-activaciones') t.classList.add('hidden');
-            });
-            
-            // Intercambiar la tarjeta de Activaciones por el listado detallado
-            document.getElementById('tarjeta-activaciones').classList.add('hidden');
-            document.getElementById('menu-licencias').classList.remove('hidden');
-            
-            // Hacer que el grid se adapte a una sola columna para la lista
-            document.querySelector('#servicios .grid').classList.remove('md:grid-cols-2', 'lg:grid-cols-4');
-        }
-
-        function cerrarLicencias() {
-            // Mostrar todas las categorías de nuevo
-            const tarjetas = document.querySelectorAll('#servicios .grid > div');
-            tarjetas.forEach(t => t.classList.remove('hidden'));
-            
-            // Volver a mostrar la tarjeta principal de Activaciones
-            document.getElementById('tarjeta-activaciones').classList.remove('hidden');
-            document.getElementById('menu-licencias').classList.add('hidden');
-            
-            // Restaurar el diseño de columnas original
-            document.querySelector('#servicios .grid').classList.add('md:grid-cols-2', 'lg:grid-cols-4');
-        }
+        
     // Función para el reloj en tiempo real
 function actualizarReloj() {
     const ahora = new Date();
@@ -1189,6 +1501,117 @@ document.getElementById('buscador-licencias').addEventListener('input', function
         }
     });
 });
+
+// ===============================
+// ACTIVACIONES - ABRIR / CERRAR
+// ===============================
+function abrirLicencias() {
+
+    // ocultar todas las tarjetas
+    document.getElementById("tarjeta-activaciones").style.display = "none";
+    document.getElementById("tarjeta-tools").style.display = "none";
+    document.getElementById("tarjeta-soporte").style.display = "none";
+    document.getElementById("tarjeta-imei").style.display = "none";
+
+    // mostrar licencias
+    document.getElementById("menu-licencias").classList.remove("hidden");
+}
+
+function cerrarLicencias() {
+
+    // mostrar todas otra vez
+    document.getElementById("tarjeta-activaciones").style.display = "block";
+    document.getElementById("tarjeta-tools").style.display = "block";
+    document.getElementById("tarjeta-soporte").style.display = "block";
+    document.getElementById("tarjeta-imei").style.display = "block";
+
+    // ocultar licencias
+    document.getElementById("menu-licencias").classList.add("hidden");
+}
+
+
+// ===============================
+// TOOLS - ABRIR / CERRAR
+// ===============================
+function abrirTools() {
+
+    // ocultar todas las tarjetas
+    document.getElementById("tarjeta-activaciones").style.display = "none";
+    document.getElementById("tarjeta-tools").style.display = "none";
+    document.getElementById("tarjeta-soporte").style.display = "none";
+    document.getElementById("tarjeta-imei").style.display = "none";
+
+    // mostrar tools
+    document.getElementById("menu-tools").classList.remove("hidden");
+}
+
+function cerrarTools() {
+
+    // mostrar todas otra vez
+    document.getElementById("tarjeta-activaciones").style.display = "block";
+    document.getElementById("tarjeta-tools").style.display = "block";
+    document.getElementById("tarjeta-soporte").style.display = "block";
+    document.getElementById("tarjeta-imei").style.display = "block";
+
+    // ocultar tools
+    document.getElementById("menu-tools").classList.add("hidden");
+}
+
+
+// ===============================
+// SOPORTE - ABRIR / CERRAR
+// ===============================
+function abrirSoporte() {
+
+    // ocultar todas las tarjetas
+    document.getElementById("tarjeta-activaciones").style.display = "none";
+    document.getElementById("tarjeta-tools").style.display = "none";
+    document.getElementById("tarjeta-soporte").style.display = "none";
+    document.getElementById("tarjeta-imei").style.display = "none";
+
+    // mostrar soporte
+    document.getElementById("menu-soporte").classList.remove("hidden");
+}
+
+function cerrarSoporte() {
+
+    // mostrar todas otra vez
+    document.getElementById("tarjeta-activaciones").style.display = "block";
+    document.getElementById("tarjeta-tools").style.display = "block";
+    document.getElementById("tarjeta-soporte").style.display = "block";
+    document.getElementById("tarjeta-imei").style.display = "block";
+
+    // ocultar soporte
+    document.getElementById("menu-soporte").classList.add("hidden");
+}
+
+
+// ===============================
+// IMEI - ABRIR / CERRAR
+// ===============================
+function abrirIMEI() {
+
+    // ocultar todas las tarjetas
+    document.getElementById("tarjeta-activaciones").style.display = "none";
+    document.getElementById("tarjeta-tools").style.display = "none";
+    document.getElementById("tarjeta-soporte").style.display = "none";
+    document.getElementById("tarjeta-imei").style.display = "none";
+
+    // mostrar imei
+    document.getElementById("menu-imei").classList.remove("hidden");
+}
+
+function cerrarIMEI() {
+
+    // mostrar todas otra vez
+    document.getElementById("tarjeta-activaciones").style.display = "block";
+    document.getElementById("tarjeta-tools").style.display = "block";
+    document.getElementById("tarjeta-soporte").style.display = "block";
+    document.getElementById("tarjeta-imei").style.display = "block";
+
+    // ocultar imei
+    document.getElementById("menu-imei").classList.add("hidden");
+}
 </script>
 </body>
 </html>
