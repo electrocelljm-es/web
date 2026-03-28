@@ -1622,34 +1622,61 @@ group-hover:scale-110 transition-all duration-500 shadow-xl shadow-cyan-400/10 g
 
             <div class="space-y-4">
 
-                <!-- BANRESERVAS -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex justify-between items-center">
+                <!-- BANRESERVAS --> 
+                <div onclick="copiarCuenta('9606101892')" class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex justify-between items-center cursor-pointer transition-all duration-300 hover:border-green-400/50 hover:shadow-lg hover:shadow-green-400/10">
+                    
+                    <!-- IZQUIERDA (SE CONSERVA IGUAL) -->
                     <div>
                         <h4 class="text-white font-bold">Banco de Reservas</h4>
                         <p class="text-slate-400 text-sm">Cuenta de Ahorro</p>
                         <p class="text-slate-400 text-sm">No. 9606101892</p>
                         <p class="text-slate-400 text-sm">Juan Alfredo Arias Lebrón</p>
                     </div>
+
+                    <!-- DERECHA (LOGO NUEVO) -->
+                    <div class="w-16 h-16 flex items-center justify-center bg-white/5 rounded-lg p-2">
+                        <img src="https://static.cdnlogo.com/logos/b/9/banreservas_800.png" 
+                        class="w-full h-full object-contain opacity-80 hover:opacity-100 transition">
+                    </div>
+
                 </div>
 
-                <!-- POPULAR -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex justify-between items-center">
+                <!-- BANCO POPULAR -->
+                <div onclick="copiarCuenta('845549633')" class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex justify-between items-center cursor-pointer transition-all duration-300 hover:border-red-400/50 hover:shadow-lg hover:shadow-red-400/10">
+                    
+                    <!-- IZQUIERDA (SE CONSERVA IGUAL) -->
                     <div>
                         <h4 class="text-white font-bold">Banco Popular Dominicano</h4>
                         <p class="text-slate-400 text-sm">Cuenta Corriente</p>
                         <p class="text-slate-400 text-sm">No. 845549633</p>
                         <p class="text-slate-400 text-sm">Juan Alfredo Arias Lebrón</p>
                     </div>
+
+                    <!-- DERECHA (LOGO NUEVO) -->
+                    <div class="w-16 h-16 flex items-center justify-center bg-white/5 rounded-lg p-2">
+                        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8c/5a/3c/8c5a3cdd-484f-623f-fce4-4bc8b7600519/AppIcon-0-0-1x_U007emarketing-0-11-0-sRGB-85-220.png/200x200ia-75.webp" 
+                        class="w-full h-full object-contain opacity-80 hover:opacity-100 transition">
+                    </div>
+
                 </div>
 
-                <!-- BHD -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex justify-between items-center">
+                <!-- BANCO BHD -->
+                <div onclick="copiarCuenta('38299300014')" class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex justify-between items-center cursor-pointer transition-all duration-300 hover:border-orange-400/50 hover:shadow-lg hover:shadow-orange-400/10">
+                    
+                    <!-- IZQUIERDA (SE CONSERVA IGUAL) -->
                     <div>
                         <h4 class="text-white font-bold">Banco BHD</h4>
                         <p class="text-slate-400 text-sm">Cuenta de Ahorro</p>
                         <p class="text-slate-400 text-sm">No. 38299300014</p>
                         <p class="text-slate-400 text-sm">Juan Alfredo Arias Lebrón</p>
                     </div>
+
+                    <!-- DERECHA (LOGO NUEVO) -->
+                    <div class="w-16 h-16 flex items-center justify-center bg-white/5 rounded-lg p-2">
+                        <img src="https://unviajealahistoria.com/wp-content/uploads/2022/10/logo-BHD.png" 
+                        class="w-full h-full object-contain opacity-80 hover:opacity-100 transition">
+                    </div>
+
                 </div>
 
             </div>
@@ -1990,6 +2017,21 @@ function recalcular() {
     } else if (enviarInput.value) {
         enviarInput.dispatchEvent(new Event("input"));
     }
+}
+
+function copiarCuenta(numero) {
+    navigator.clipboard.writeText(numero);
+
+    // feedback visual PRO
+    const aviso = document.createElement("div");
+    aviso.innerText = "Cuenta copiada ✔️";
+    aviso.className = "fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs px-4 py-2 rounded-lg shadow-lg z-50";
+    
+    document.body.appendChild(aviso);
+
+    setTimeout(() => {
+        aviso.remove();
+    }, 1500);
 }
 </script>
 </body>
