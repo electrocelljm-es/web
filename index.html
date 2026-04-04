@@ -2378,15 +2378,37 @@
 </div>
 
 <!-- ==========================================
-     Métodos de Pago
+     Métodos de Pago - 3D FLOAT (SIN CORTES AL ACERCARSE)
      ========================================== -->
 
-<div id="contenedor-pagos" class="w-full mt-20 flex justify-center">
+<style>
+    @keyframes float3d {
+        0% {
+            transform: translateZ(0px) scale(1);
+        }
+        50% {
+            transform: translateZ(20px) scale(1.02);
+        }
+        100% {
+            transform: translateZ(0px) scale(1);
+        }
+    }
 
-    <div onclick="abrirPagos()" class="glass-card relative w-full max-w-sm p-7 rounded-3xl border border-cyan-400/20 hover:border-cyan-300/60 transition-all duration-500 group cursor-pointer overflow-hidden hover:-translate-y-1 hover:scale-[1.03] backdrop-blur-xl">
+    .tarjeta-float-3d {
+        animation: float3d 3s ease-in-out infinite;
+        transform-style: preserve-3d;
+        perspective: 500px;
+        will-change: transform;
+    }
+</style>
+
+<!-- Contenedor con padding extra para que no se corte -->
+<div id="contenedor-pagos" class="w-full -mt-16 flex justify-center px-6 py-8">
+
+    <div onclick="abrirPagos()" class="tarjeta-float-3d glass-card relative w-full max-w-sm p-7 rounded-3xl border border-cyan-400/20 hover:border-cyan-300/60 transition-all duration-500 group cursor-pointer overflow-visible backdrop-blur-xl z-10">
 
         <!-- GLOW MEJORADO -->
-        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 opacity-0 group-hover:opacity-25 blur-2xl transition duration-700"></div>
+        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 opacity-0 group-hover:opacity-25 blur-2xl transition duration-700 -z-10"></div>
 
         <!-- BORDE INTERNO SUAVE -->
         <div class="absolute inset-0 rounded-3xl border border-white/5"></div>
