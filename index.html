@@ -127,33 +127,33 @@
 <button id="btn-menu-lateral" class="mr-3 text-white text-2xl hover:text-blue-400 transition-all focus:outline-none z-50">
     <i class="fas fa-bars"></i>
 </button>
-        <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+        <div class="flex items-center gap-2 sm:gap-3">
 
-            <i class="fas fa-unlock-alt text-blue-500 text-2xl"></i>
+    <i class="fas fa-unlock-alt text-blue-500 text-xl sm:text-2xl"></i>
 
-            <div class="text-sm sm:text-xl font-black tracking-tighter uppercase italic flex flex-col sm:flex-row sm:items-baseline gap-0 sm:gap-1">
+    <div class="font-black tracking-tighter uppercase italic flex items-baseline gap-1 text-xs sm:text-xl">
 
-                <span>J.F Unlock</span>
+        <span class="whitespace-nowrap">J.F Unlock</span>
 
-                <div class="relative inline-block">
-                    <span class="text-blue-500">Server</span>
+        <div class="relative inline-block">
+            <span class="text-blue-500 whitespace-nowrap">Server</span>
 
-                    <div id="status-container" class="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 -bottom-4 sm:-bottom-5 flex items-center gap-1 transition-opacity duration-500 whitespace-nowrap">
-                        
-                        <span id="status-dot" class="relative flex h-1.5 w-1.5">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-1.5 w-1.5"></span>
-                        </span>
+            <div id="status-container" class="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 -bottom-3 sm:-bottom-5 flex items-center gap-1 transition-opacity duration-500 whitespace-nowrap">
+                
+                <span id="status-dot" class="relative flex h-1 w-1 sm:h-1.5 sm:w-1.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-1 w-1 sm:h-1.5 sm:w-1.5"></span>
+                </span>
 
-                        <span id="status-text" class="text-[7px] font-bold uppercase tracking-tighter leading-none">
-                            Cargando...
-                        </span>
-
-                    </div>
-                </div>
+                <span id="status-text" class="text-[6px] sm:text-[7px] font-bold uppercase tracking-tighter leading-none">
+                    ONLINE
+                </span>
 
             </div>
         </div>
+
+    </div>
+</div>
 
 <!-- ==========================================
      MARCAS (VERSIÓN DEFINITIVA - SIN CORTES)
