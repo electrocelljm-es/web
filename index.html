@@ -4399,178 +4399,162 @@
 
 </div> <!-- ✅ CIERRE CONTENEDOR CATÁLOGO -->
 
-                <!-- ========================================== -->
-                <!-- ========== SECCIÓN: DASHBOARD (OCULTO POR DEFECTO) ========== -->
-                <!-- ========================================== -->
+<!-- ========================================== -->
+<!-- ========== SECCIÓN: DASHBOARD (OCULTO POR DEFECTO) ========== -->
+<!-- ========================================== -->
 
-                <div id="contenedor-dashboard" class="hidden max-w-7xl mx-auto px-6 pb-24">
-                    <div class="glass-card p-6 rounded-xl mb-6">
-                        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-                            <i class="fas fa-chart-line text-pink-400"></i> Mi Dashboard
-                        </h2>
-                        <p class="text-slate-400 text-sm mb-6">Administra tus licencias favoritas y tu carrito de compras</p>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div class="glass-card p-6 rounded-xl text-center">
-                                <i class="fas fa-cart-plus text-blue-400 text-4xl mb-3"></i>
-                                <p class="text-3xl font-bold text-white" id="total-carrito-dash">0</p>
-                                <p class="text-xs text-slate-400 mt-1">Productos en carrito</p>
-                                <button onclick="vaciarCarrito()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
-                                    <i class="fas fa-trash"></i> Vaciar carrito
-                                </button>
-                            </div>
-                            <div class="glass-card p-6 rounded-xl text-center">
-                                <i class="fas fa-heart text-red-400 text-4xl mb-3"></i>
-                                <p class="text-3xl font-bold text-white" id="total-favoritos-dash">0</p>
-                                <p class="text-xs text-slate-400 mt-1">Licencias favoritas</p>
-                                <button onclick="vaciarFavoritos()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
-                                    <i class="fas fa-trash"></i> Vaciar favoritos
-                                </button>
-                            </div>
-                        </div>
+<div id="contenedor-dashboard" class="hidden max-w-7xl mx-auto px-6 pb-24">
+    <div class="glass-card p-6 rounded-xl mb-6">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+            <i class="fas fa-chart-line text-pink-400"></i> Mi Dashboard
+        </h2>
+        <p class="text-slate-400 text-sm mb-6">Administra tus licencias favoritas y tu carrito de compras</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="glass-card p-6 rounded-xl text-center">
+                <i class="fas fa-cart-plus text-blue-400 text-4xl mb-3"></i>
+                <p class="text-3xl font-bold text-white" id="total-carrito-dash">0</p>
+                <p class="text-xs text-slate-400 mt-1">Productos en carrito</p>
+                <button onclick="vaciarCarrito()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
+                    <i class="fas fa-trash"></i> Vaciar carrito
+                </button>
+            </div>
+            <div class="glass-card p-6 rounded-xl text-center">
+                <i class="fas fa-heart text-red-400 text-4xl mb-3"></i>
+                <p class="text-3xl font-bold text-white" id="total-favoritos-dash">0</p>
+                <p class="text-xs text-slate-400 mt-1">Licencias favoritas</p>
+                <button onclick="vaciarFavoritos()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
+                    <i class="fas fa-trash"></i> Vaciar favoritos
+                </button>
+            </div>
+        </div>
 
-                        <div class="glass-card p-6 rounded-xl mb-8">
-                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                                <i class="fas fa-shopping-cart text-green-400"></i> Carrito de Compras
-                            </h3>
-                            <div id="lista-carrito-dash" class="space-y-2 max-h-96 overflow-y-auto">
-                                <p class="text-slate-400 text-sm text-center py-8">No hay licencias en el carrito</p>
-                            </div>
-                            <div class="mt-4 pt-4 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-slate-400">Total:</span>
-                                    <span class="font-bold text-2xl text-green-400" id="total-precio-dash">$0.00</span>
-                                </div>
-                                <button onclick="enviarCarritoWhatsApp()" class="bg-[#25D366] hover:bg-[#128C7E] px-5 py-2 rounded-lg text-white font-bold transition shadow-lg">
-                                    <i class="fab fa-whatsapp"></i> Enviar pedido
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="glass-card p-6 rounded-xl">
-                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                                <i class="fas fa-heart text-red-400"></i> Licencias Favoritas
-                            </h3>
-                            <div id="lista-favoritos-dash" class="flex flex-wrap gap-2 min-h-[100px]">
-                                <p class="text-slate-400 text-sm w-full text-center py-8">No hay favoritos aún</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ==========================================
-                         TARJETA IP PÚBLICA
-                         ========================================== -->
-                    <div class="glass-card p-4 rounded-xl mb-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-network-wired text-cyan-400 text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-[9px] text-slate-400 uppercase tracking-wider">Tu IP Pública</p>
-                                    <div class="flex items-center gap-2">
-                                        <span id="ip-publica-valor" class="text-white font-mono text-base font-bold">Cargando...</span>
-                                        <button onclick="copiarIPPublica()" class="text-slate-400 hover:text-cyan-400 transition text-xs bg-slate-800/50 px-2 py-1 rounded">
-                                            <i class="fas fa-copy"></i> Copiar
-                                        </button>
-                                    </div>
-                                    <p id="ip-ubicacion-valor" class="text-[8px] text-slate-500 mt-1">📍 Obteniendo ubicación...</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-[8px] bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded-full">🌐 En vivo</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ==========================================
-                         TARJETA ADB - CONECTAR DISPOSITIVO ANDROID
-                         ========================================== -->
-                    <div class="glass-card p-4 rounded-xl mb-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 bg-orange-500/10 rounded-lg flex items-center justify-center">
-                                    <i class="fab fa-android text-orange-400 text-lg"></i>
-                                </div>
-                                <h3 class="text-sm font-bold text-white">Diagnóstico ADB</h3>
-                                <span class="text-[8px] bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">Beta</span>
-                            </div>
-                        </div>
-
-                        <!-- INSTRUCCIONES CLARAS PARA EL CLIENTE -->
-                        <div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 mb-3">
-                            <p class="text-[10px] text-blue-300 font-bold mb-2">📋 INSTRUCCIONES (LEER ANTES DE CONECTAR):</p>
-                            <ol class="text-[9px] text-slate-300 list-decimal list-inside space-y-1">
-                                <li>Activa <span class="text-yellow-300 font-bold">"Depuración USB"</span> en <span class="text-yellow-300">Ajustes → Opciones de Desarrollador</span></li>
-                                <li>Conecta tu teléfono por USB a la computadora</li>
-                                <li>En el teléfono, selecciona <span class="text-green-300 font-bold">"Transferencia de archivos (MTP)"</span></li>
-                                <li>🔐 <span class="text-orange-300 font-bold">EN TU TELÉFONO:</span> Debe aparecer una ventana <span class="text-orange-300">"¿Permitir depuración USB?"</span> → Marca <span class="text-orange-300">"Permitir siempre"</span> y ACEPTA</li>
-                                <li>Si NO aparece la ventana, ejecuta <span class="text-cyan-300">adb devices</span> en la PC (ver nota abajo)</li>
-                            </ol>
-                        </div>
-
-                        <!-- NOTA ADICIONAL SOBRE ADB PLATFORM TOOLS -->
-                        <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2 mb-3">
-                            <p class="text-[9px] text-amber-300">
-                                <i class="fas fa-exclamation-triangle mr-1"></i> 
-                                <span class="font-bold">¿No aparece la ventana?</span> Descarga 
-                                <a href="https://developer.android.com/studio/releases/platform-tools" target="_blank" class="text-cyan-400 underline">ADB Platform Tools</a>, 
-                                abre una terminal en esa carpeta y ejecuta: <code class="text-green-300">adb devices</code>
-                            </p>
-                        </div>
-
-                        <!-- ESTADO -->
-                        <div id="adb-estado" class="text-[10px] text-slate-400 mb-3 flex items-center gap-2">
-                            <i class="fas fa-info-circle text-orange-400/70"></i>
-                            <span>Conecta tu Android vía USB con depuración activada</span>
-                        </div>
-
-                        <!-- BOTONES -->
-                        <div class="flex gap-2">
-                            <button id="btn-conectar-adb" class="flex-1 text-xs bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-3 py-1.5 rounded-lg transition shadow-md">
-                                <i class="fas fa-plug mr-1"></i> Conectar dispositivo
-                            </button>
-                            <button id="btn-copiar-adb" disabled class="flex-1 text-xs bg-slate-700/50 text-slate-400 px-3 py-1.5 rounded-lg transition cursor-not-allowed">
-                                <i class="fas fa-copy mr-1"></i> Copiar información
-                            </button>
-                        </div>
-
-                        <!-- ÁREA DE RESULTADOS (oculta por defecto) -->
-                        <div id="adb-info-container" class="hidden bg-slate-800/50 rounded-lg p-3 mt-3 border border-orange-500/20">
-                            <div class="space-y-1 text-[11px]">
-                                <div class="flex justify-between border-b border-slate-700 pb-1">
-                                    <span class="text-slate-400">Modelo:</span>
-                                    <span id="adb-modelo" class="text-white font-mono">---</span>
-                                </div>
-                                <div class="flex justify-between border-b border-slate-700 pb-1">
-                                    <span class="text-slate-400">Fabricante:</span>
-                                    <span id="adb-fabricante" class="text-white font-mono">---</span>
-                                </div>
-                                <div class="flex justify-between border-b border-slate-700 pb-1">
-                                    <span class="text-slate-400">Android:</span>
-                                    <span id="adb-android" class="text-white font-mono">---</span>
-                                </div>
-                                <div class="flex justify-between border-b border-slate-700 pb-1">
-                                    <span class="text-slate-400">IMEI / Serial:</span>
-                                    <span id="adb-serial" class="text-white font-mono text-[10px]">---</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-slate-400">Estado:</span>
-                                    <span id="adb-root" class="text-white font-mono">---</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ERROR -->
-                        <div id="adb-error" class="hidden bg-red-500/10 border border-red-500/30 rounded-lg p-2 mt-3">
-                            <p class="text-[10px] text-red-400" id="adb-error-msg"></p>
-                        </div>
-
-                        <p class="text-[8px] text-slate-500 mt-3 text-center">
-                            <i class="fas fa-shield-alt mr-1"></i> Solo lectura - No se almacena ningún dato
-                        </p>
-                    </div>
+        <div class="glass-card p-6 rounded-xl mb-8">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <i class="fas fa-shopping-cart text-green-400"></i> Carrito de Compras
+            </h3>
+            <div id="lista-carrito-dash" class="space-y-2 max-h-96 overflow-y-auto">
+                <p class="text-slate-400 text-sm text-center py-8">No hay licencias en el carrito</p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-slate-400">Total:</span>
+                    <span class="font-bold text-2xl text-green-400" id="total-precio-dash">$0.00</span>
                 </div>
+                <button onclick="enviarCarritoWhatsApp()" class="bg-[#25D366] hover:bg-[#128C7E] px-5 py-2 rounded-lg text-white font-bold transition shadow-lg">
+                    <i class="fab fa-whatsapp"></i> Enviar pedido
+                </button>
+            </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <i class="fas fa-heart text-red-400"></i> Licencias Favoritas
+            </h3>
+            <div id="lista-favoritos-dash" class="flex flex-wrap gap-2 min-h-[100px]">
+                <p class="text-slate-400 text-sm w-full text-center py-8">No hay favoritos aún</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         TARJETA IP PÚBLICA
+         ========================================== -->
+    <div class="glass-card p-4 rounded-xl mb-6">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-network-wired text-cyan-400 text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-wider">Tu IP Pública</p>
+                    <div class="flex items-center gap-2">
+                        <span id="ip-publica-valor" class="text-white font-mono text-base font-bold">Cargando...</span>
+                        <button onclick="copiarIPPublica()" class="text-slate-400 hover:text-cyan-400 transition text-xs bg-slate-800/50 px-2 py-1 rounded">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <p id="ip-ubicacion-valor" class="text-[8px] text-slate-500 mt-1">📍 Obteniendo ubicación...</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <span class="text-[8px] bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded-full">🌐 En vivo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         TARJETA ADB - CONECTAR DISPOSITIVO ANDROID
+         ========================================== -->
+    <div class="glass-card p-4 rounded-xl mb-6">
+        <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-orange-500/10 rounded-lg flex items-center justify-center">
+                    <i class="fab fa-android text-orange-400 text-lg"></i>
+                </div>
+                <h3 class="text-sm font-bold text-white">Diagnóstico ADB</h3>
+                <span class="text-[8px] bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">Beta</span>
+            </div>
+            <button id="btn-conectar-adb" class="text-xs bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-3 py-1.5 rounded-lg transition shadow-md">
+                <i class="fas fa-plug mr-1"></i> Conectar dispositivo
+            </button>
+        </div>
+
+        <!-- INSTRUCCIONES CLARAS -->
+        <div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 mb-3">
+            <p class="text-[10px] text-blue-300 font-bold mb-2">📋 INSTRUCCIONES:</p>
+            <ol class="text-[9px] text-slate-300 list-decimal list-inside space-y-1">
+                <li>Activa <span class="text-yellow-300 font-bold">"Depuración USB"</span> en Opciones de Desarrollador</li>
+                <li>Conecta el USB y selecciona <span class="text-green-300 font-bold">"Transferencia de archivos (MTP)"</span></li>
+                <li>🔐 En tu teléfono: Acepta la ventana <span class="text-orange-300">"Permitir depuración USB"</span></li>
+                <li>Si no aparece, ejecuta <span class="text-cyan-300">adb devices</span> desde Platform Tools</li>
+            </ol>
+        </div>
+
+        <div id="adb-estado" class="text-[10px] text-slate-400 mb-3 flex items-center gap-2">
+            <i class="fas fa-info-circle text-orange-400/70"></i>
+            <span>Conecta tu Android vía USB con depuración activada</span>
+        </div>
+
+        <div id="adb-info-container" class="hidden bg-slate-800/50 rounded-lg p-3 mb-3 border border-orange-500/20">
+            <div class="space-y-1 text-[11px]">
+                <div class="flex justify-between border-b border-slate-700 pb-1">
+                    <span class="text-slate-400">Modelo:</span>
+                    <span id="adb-modelo" class="text-white font-mono">---</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-700 pb-1">
+                    <span class="text-slate-400">Fabricante:</span>
+                    <span id="adb-fabricante" class="text-white font-mono">---</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-700 pb-1">
+                    <span class="text-slate-400">Android:</span>
+                    <span id="adb-android" class="text-white font-mono">---</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-700 pb-1">
+                    <span class="text-slate-400">Serial:</span>
+                    <span id="adb-serial" class="text-white font-mono text-[10px]">---</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Estado:</span>
+                    <span id="adb-root" class="text-white font-mono">---</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="adb-error" class="hidden bg-red-500/10 border border-red-500/30 rounded-lg p-2 mb-3">
+            <p class="text-[10px] text-red-400" id="adb-error-msg"></p>
+        </div>
+
+        <div class="flex gap-2 mt-2">
+            <button id="btn-copiar-adb" disabled class="flex-1 text-xs bg-slate-700/50 text-slate-400 px-3 py-1.5 rounded-lg transition cursor-not-allowed">
+                <i class="fas fa-copy mr-1"></i> Copiar información
+            </button>
+        </div>
+        <p class="text-[8px] text-slate-500 mt-2 text-center">
+            <i class="fas fa-shield-alt mr-1"></i> Solo lectura - No se almacena ningún dato
+        </p>
+    </div>
+</div>
             </div>
         </div>
 
@@ -5472,7 +5456,7 @@ function copiarCuenta(numero) {
 }
 
 // ===============================
-// DASHBOARD SOLO PARA LICENCIAS + IP PÚBLICA + ADB
+// DASHBOARD SOLO PARA LICENCIAS + IP PÚBLICA
 // ===============================
 
 // Inicializar datos desde localStorage
@@ -5519,10 +5503,9 @@ function copiarIPPublica() {
 }
 
 // ===============================
-// ADB - CONEXIÓN Y LECTURA DE DISPOSITIVO
+// ADB - DETECCIÓN DE DISPOSITIVO (VERSIÓN SIMPLIFICADA)
 // ===============================
 let adbDispositivo = null;
-let adbDatosActuales = {};
 
 async function conectarADB() {
     const btnConectar = document.getElementById('btn-conectar-adb');
@@ -5534,100 +5517,69 @@ async function conectarADB() {
     
     if (!btnConectar) return;
     
-    // Mostrar instrucciones en el estado
-    if (estadoDiv) {
-        estadoDiv.innerHTML = '<i class="fas fa-info-circle text-blue-400"></i> <span>Paso 1: Selecciona tu dispositivo en la ventana que aparecerá...</span>';
-    }
-    
     try {
-        // Cambiar estado a "Conectando..."
         btnConectar.disabled = true;
         btnConectar.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Conectando...';
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-spinner fa-spin text-orange-400"></i> <span>Solicitando acceso al dispositivo...</span>';
         
-        // Verificar si el navegador soporta WebUSB
         if (!navigator.usb) {
-            throw new Error('❌ Tu navegador no soporta WebUSB. Usa Chrome, Edge u Opera.');
+            throw new Error('Tu navegador no soporta WebUSB. Usa Chrome, Edge u Opera.');
         }
         
         // Solicitar dispositivo USB
         const device = await navigator.usb.requestDevice({
-            filters: [
-                { classCode: 0xff, subclassCode: 0x42 } // ADB interface
-            ]
+            filters: [{ classCode: 0xff, subclassCode: 0x42 }]
         });
-        
-        if (estadoDiv) {
-            estadoDiv.innerHTML = '<i class="fas fa-spinner fa-spin text-orange-400"></i> <span>Paso 2: Conectando al dispositivo...</span>';
-        }
         
         adbDispositivo = device;
         
-        // Abrir conexión
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-spinner fa-spin text-orange-400"></i> <span>Conectando al dispositivo...</span>';
+        
+        // Abrir y probar conexión
         await device.open();
         
-        // Seleccionar la interfaz ADB
         const configuration = device.configurations[0];
         const usbInterface = configuration.interfaces.find(iface => 
             iface.interfaceClass === 0xff && iface.interfaceSubclass === 0x42
         );
         
         if (!usbInterface) {
-            throw new Error('❌ No se encontró la interfaz ADB. Asegúrate de tener "Depuración USB" activada y el teléfono desbloqueado.');
+            throw new Error('Interfaz ADB no encontrada');
         }
         
         await device.claimInterface(usbInterface.interfaceNumber);
         
-        if (estadoDiv) {
-            estadoDiv.innerHTML = '<i class="fas fa-check-circle text-green-400"></i> <span>✅ Dispositivo conectado. Leyendo información...</span>';
-        }
-        
-        // Obtener información real del dispositivo usando comandos ADB
-        // Para una implementación completa, necesitarías una librería ADB para WebUSB
-        // Por ahora, mostramos instrucciones claras
+        // Conexión exitosa
         if (infoContainer) {
             infoContainer.classList.remove('hidden');
-            document.getElementById('adb-modelo').innerHTML = '<span class="text-yellow-400">⚠️ Implementación avanzada requerida</span>';
-            document.getElementById('adb-fabricante').innerHTML = '<span class="text-cyan-400">Usa ADB Platform Tools para datos completos</span>';
-            document.getElementById('adb-android').innerHTML = '<span class="text-green-400">Conexión WebUSB establecida</span>';
-            document.getElementById('adb-serial').innerHTML = '<span class="text-purple-400">Depuración USB activa</span>';
-            document.getElementById('adb-root').innerHTML = '<span class="text-orange-400">Verificar con adb devices</span>';
-            
-            adbDatosActuales = {
-                modelo: 'Ver con ADB Platform Tools',
-                fabricante: 'Conexión WebUSB OK',
-                android: 'Depuración activa',
-                serial: 'Ejecuta: adb devices',
-                bateria: 'N/A',
-                root: 'Pendiente'
-            };
+            document.getElementById('adb-modelo').innerHTML = '<span class="text-green-300">✅ Conectado vía WebUSB</span>';
+            document.getElementById('adb-fabricante').innerHTML = '<span class="text-yellow-300">Depuración USB activa</span>';
+            document.getElementById('adb-android').innerHTML = '<span class="text-blue-300">Para datos completos usa ADB Platform Tools</span>';
+            document.getElementById('adb-serial').innerHTML = '<span class="text-purple-300">Conexión establecida</span>';
+            document.getElementById('adb-root').innerHTML = '<span class="text-orange-300">Verificar con adb devices</span>';
         }
         
         if (errorDiv) errorDiv.classList.add('hidden');
         if (btnCopiar) btnCopiar.disabled = false;
         
-        if (estadoDiv) {
-            estadoDiv.innerHTML = '<i class="fas fa-check-circle text-green-400"></i> <span>✅ Dispositivo conectado. Para más detalles, usa ADB Platform Tools.</span>';
-        }
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-check-circle text-green-400"></i> <span>✅ Dispositivo conectado correctamente</span>';
         
-        mostrarNotificacion('✅ Dispositivo conectado correctamente vía WebUSB');
+        mostrarNotificacion('✅ Dispositivo conectado');
         
     } catch (error) {
-        console.error('Error ADB:', error);
-        
-        let mensajeError = error.message || 'Error al conectar el dispositivo.';
-        
-        if (mensajeError.includes('No se encontró la interfaz ADB')) {
-            mensajeError = '❌ No se encontró la interfaz ADB. Pasos a seguir:\n1. Activa "Depuración USB" en Opciones de Desarrollador\n2. Selecciona "Transferencia de archivos (MTP)" en el teléfono\n3. Desbloquea el teléfono\n4. Vuelve a intentar';
-        } else if (mensajeError.includes('requestDevice')) {
-            mensajeError = '❌ No se seleccionó ningún dispositivo. Haz clic en "Conectar" y elige tu teléfono.';
-        }
-        
+        console.error('Error:', error);
         if (errorDiv && errorMsg) {
-            errorMsg.innerHTML = mensajeError.replace(/\n/g, '<br>');
+            let mensaje = error.message || 'Error al conectar.';
+            if (mensaje.includes('No device selected') || mensaje.includes('requestDevice')) {
+                mensaje = 'No se seleccionó ningún dispositivo. Haz clic en "Conectar" y elige tu teléfono.';
+            } else if (mensaje.includes('interface') || mensaje.includes('ADB')) {
+                mensaje = '⚠️ No se encontró la interfaz ADB.\n\nPasos obligatorios:\n1. Activa "Depuración USB"\n2. Selecciona "Transferencia de archivos (MTP)"\n3. Desbloquea el teléfono\n4. Acepta la ventana de depuración en el teléfono';
+            }
+            errorMsg.innerHTML = mensaje.replace(/\n/g, '<br>');
             errorDiv.classList.remove('hidden');
         }
-        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-exclamation-triangle text-red-400"></i> <span>Error de conexión - Revisa las instrucciones</span>';
-        mostrarNotificacion('⚠️ ' + mensajeError.split('\n')[0]);
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-exclamation-triangle text-red-400"></i> <span>Error de conexión</span>';
+        mostrarNotificacion('⚠️ Error al conectar');
     } finally {
         if (btnConectar) {
             btnConectar.disabled = false;
@@ -5637,32 +5589,25 @@ async function conectarADB() {
 }
 
 function copiarInfoADB() {
-    if (!adbDatosActuales || Object.keys(adbDatosActuales).length === 0) {
-        mostrarNotificacion('⚠️ No hay información para copiar. Conecta un dispositivo primero.');
-        return;
-    }
-    
-    const textoInfo = `📱 INFORMACIÓN DEL DISPOSITIVO 📱
-    
-Modelo: ${adbDatosActuales.modelo || '---'}
-Fabricante: ${adbDatosActuales.fabricante || '---'}
-Versión Android: ${adbDatosActuales.android || '---'}
-IMEI/Serial: ${adbDatosActuales.serial || '---'}
-Batería: ${adbDatosActuales.bateria || '---'}
-Root: ${adbDatosActuales.root || '---'}
-
+    const textoInfo = `🔧 INFORMACIÓN DE CONEXIÓN ADB 🔧
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Estado: Dispositivo conectado vía WebUSB
+📱 Depuración USB: Activada
+🔌 Interfaz: ADB detectada
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📌 Para información detallada del dispositivo:
+   - Descarga ADB Platform Tools
+   - Ejecuta: adb devices
+   - Luego: adb shell getprop ro.product.model
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📅 ${new Date().toLocaleString()}
-🔗 J.F Unlock Server
-
-📌 Para información detallada, instala ADB Platform Tools:
-   https://developer.android.com/studio/releases/platform-tools
-   Luego ejecuta: adb devices`;
+🔗 J.F Unlock Server`;
     
     navigator.clipboard.writeText(textoInfo);
     mostrarNotificacion('📋 Información copiada al portapapeles');
 }
 
-// Inicializar eventos ADB cuando el DOM esté listo
+// Inicializar eventos ADB
 document.addEventListener('DOMContentLoaded', function() {
     const btnConectar = document.getElementById('btn-conectar-adb');
     const btnCopiar = document.getElementById('btn-copiar-adb');
