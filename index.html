@@ -4456,6 +4456,32 @@
             </div>
         </div>
     </div>
+
+            <!-- ==========================================
+                 TARJETA IP PÚBLICA
+                 ========================================== -->
+            <div class="glass-card p-4 rounded-xl mb-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-network-wired text-cyan-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-[9px] text-slate-400 uppercase tracking-wider">Tu IP Pública</p>
+                            <div class="flex items-center gap-2">
+                                <span id="ip-publica-valor" class="text-white font-mono text-base font-bold">Cargando...</span>
+                                <button onclick="copiarIPPublica()" class="text-slate-400 hover:text-cyan-400 transition text-xs bg-slate-800/50 px-2 py-1 rounded">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <p id="ip-ubicacion-valor" class="text-[8px] text-slate-500 mt-1">📍 Obteniendo ubicación...</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[8px] bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded-full">🌐 En vivo</span>
+                    </div>
+                </div>
+            </div>
 </div>
 
 <!-- ==========================================
@@ -5356,12 +5382,54 @@ function copiarCuenta(numero) {
 }
 
 // ===============================
-// DASHBOARD SOLO PARA LICENCIAS
+// DASHBOARD SOLO PARA LICENCIAS + IP PÚBLICA
 // ===============================
 
 // Inicializar datos desde localStorage
 let carritoLicencias = JSON.parse(localStorage.getItem('jf_carrito_licencias')) || [];
 let favoritosLicencias = JSON.parse(localStorage.getItem('jf_favoritos_licencias')) || [];
+
+// ===============================
+// OBTENER IP PÚBLICA DEL CLIENTE
+// ===============================
+let ipPublicaActual = 'Cargando...';
+let ipUbicacionActual = '';
+
+async function obtenerIPPublica() {
+    try {
+        const respuesta = await fetch('https://ipapi.co/json/');
+        const datos = await respuesta.json();
+        
+        ipPublicaActual = datos.ip || 'No disponible';
+        ipUbicacionActual = `${datos.city || 'Desconocida'}, ${datos.region || ''}, ${datos.country_name || ''}`;
+        
+        // Actualizar elementos del dashboard si existen
+        const ipSpan = document.getElementById('ip-publica-valor');
+        const ubicacionSpan = document.getElementById('ip-ubicacion-valor');
+        
+        if (ipSpan) ipSpan.textContent = ipPublicaActual;
+        if (ubicacionSpan) ubicacionSpan.innerHTML = `📍 ${ipUbicacionActual} | ${datos.org || ''}`;
+        
+        // Guardar en localStorage
+        localStorage.setItem('cliente_ip', ipPublicaActual);
+        
+    } catch (error) {
+        ipPublicaActual = 'No disponible';
+        const ipSpan = document.getElementById('ip-publica-valor');
+        if (ipSpan) ipSpan.textContent = 'No disponible';
+        console.log('Error al obtener IP:', error);
+    }
+}
+
+// Función para copiar la IP
+function copiarIPPublica() {
+    if (ipPublicaActual && ipPublicaActual !== 'Cargando...' && ipPublicaActual !== 'No disponible') {
+        navigator.clipboard.writeText(ipPublicaActual);
+        mostrarNotificacion('📋 IP copiada al portapapeles');
+    } else {
+        mostrarNotificacion('⚠️ No se pudo obtener la IP');
+    }
+}
 
 // ===============================
 // AGREGAR AL CARRITO
@@ -5557,6 +5625,12 @@ function actualizarDashboard() {
             `).join('');
         }
     }
+    
+    // Actualizar IP en el dashboard si los elementos existen
+    const ipValor = document.getElementById('ip-publica-valor');
+    const ipUbic = document.getElementById('ip-ubicacion-valor');
+    if (ipValor) ipValor.textContent = ipPublicaActual;
+    if (ipUbic && ipUbicacionActual) ipUbic.innerHTML = `📍 ${ipUbicacionActual}`;
 }
 
 // ===============================
@@ -5618,13 +5692,17 @@ function importarDatosLicencias() {
     input.click();
 }
 
+// ===============================
+// INICIALIZAR IP Y DASHBOARD
+// ===============================
 // Ejecutar al cargar
 actualizarContadorCarrito();
 actualizarContadorFavoritos();
 
-// Inicializar dashboard
+// Inicializar dashboard y obtener IP
 document.addEventListener('DOMContentLoaded', function() {
     actualizarDashboard();
+    obtenerIPPublica();
 });
 
 // ==========================================
