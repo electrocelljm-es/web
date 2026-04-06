@@ -4403,86 +4403,155 @@
 <!-- ========== SECCIÓN: DASHBOARD (OCULTO POR DEFECTO) ========== -->
 <!-- ========================================== -->
 
-<div id="contenedor-dashboard" class="hidden max-w-7xl mx-auto px-6 pb-24">
-    <div class="glass-card p-6 rounded-xl mb-6">
-        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-            <i class="fas fa-chart-line text-pink-400"></i> Mi Dashboard
-        </h2>
-        <p class="text-slate-400 text-sm mb-6">Administra tus licencias favoritas y tu carrito de compras</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="glass-card p-6 rounded-xl text-center">
-                <i class="fas fa-cart-plus text-blue-400 text-4xl mb-3"></i>
-                <p class="text-3xl font-bold text-white" id="total-carrito-dash">0</p>
-                <p class="text-xs text-slate-400 mt-1">Productos en carrito</p>
-                <button onclick="vaciarCarrito()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
-                    <i class="fas fa-trash"></i> Vaciar carrito
-                </button>
-            </div>
-            <div class="glass-card p-6 rounded-xl text-center">
-                <i class="fas fa-heart text-red-400 text-4xl mb-3"></i>
-                <p class="text-3xl font-bold text-white" id="total-favoritos-dash">0</p>
-                <p class="text-xs text-slate-400 mt-1">Licencias favoritas</p>
-                <button onclick="vaciarFavoritos()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
-                    <i class="fas fa-trash"></i> Vaciar favoritos
-                </button>
-            </div>
-        </div>
-
-        <div class="glass-card p-6 rounded-xl mb-8">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                <i class="fas fa-shopping-cart text-green-400"></i> Carrito de Compras
-            </h3>
-            <div id="lista-carrito-dash" class="space-y-2 max-h-96 overflow-y-auto">
-                <p class="text-slate-400 text-sm text-center py-8">No hay licencias en el carrito</p>
-            </div>
-            <div class="mt-4 pt-4 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-2">
-                    <span class="text-slate-400">Total:</span>
-                    <span class="font-bold text-2xl text-green-400" id="total-precio-dash">$0.00</span>
-                </div>
-                <button onclick="enviarCarritoWhatsApp()" class="bg-[#25D366] hover:bg-[#128C7E] px-5 py-2 rounded-lg text-white font-bold transition shadow-lg">
-                    <i class="fab fa-whatsapp"></i> Enviar pedido
-                </button>
-            </div>
-        </div>
-
-        <div class="glass-card p-6 rounded-xl">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                <i class="fas fa-heart text-red-400"></i> Licencias Favoritas
-            </h3>
-            <div id="lista-favoritos-dash" class="flex flex-wrap gap-2 min-h-[100px]">
-                <p class="text-slate-400 text-sm w-full text-center py-8">No hay favoritos aún</p>
-            </div>
-        </div>
-    </div>
-
-            <!-- ==========================================
-                 TARJETA IP PÚBLICA
-                 ========================================== -->
-            <div class="glass-card p-4 rounded-xl mb-6">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-network-wired text-cyan-400 text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-[9px] text-slate-400 uppercase tracking-wider">Tu IP Pública</p>
-                            <div class="flex items-center gap-2">
-                                <span id="ip-publica-valor" class="text-white font-mono text-base font-bold">Cargando...</span>
-                                <button onclick="copiarIPPublica()" class="text-slate-400 hover:text-cyan-400 transition text-xs bg-slate-800/50 px-2 py-1 rounded">
-                                    <i class="fas fa-copy"></i> Copiar
+                <div id="contenedor-dashboard" class="hidden max-w-7xl mx-auto px-6 pb-24">
+                    <div class="glass-card p-6 rounded-xl mb-6">
+                        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                            <i class="fas fa-chart-line text-pink-400"></i> Mi Dashboard
+                        </h2>
+                        <p class="text-slate-400 text-sm mb-6">Administra tus licencias favoritas y tu carrito de compras</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="glass-card p-6 rounded-xl text-center">
+                                <i class="fas fa-cart-plus text-blue-400 text-4xl mb-3"></i>
+                                <p class="text-3xl font-bold text-white" id="total-carrito-dash">0</p>
+                                <p class="text-xs text-slate-400 mt-1">Productos en carrito</p>
+                                <button onclick="vaciarCarrito()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
+                                    <i class="fas fa-trash"></i> Vaciar carrito
                                 </button>
                             </div>
-                            <p id="ip-ubicacion-valor" class="text-[8px] text-slate-500 mt-1">📍 Obteniendo ubicación...</p>
+                            <div class="glass-card p-6 rounded-xl text-center">
+                                <i class="fas fa-heart text-red-400 text-4xl mb-3"></i>
+                                <p class="text-3xl font-bold text-white" id="total-favoritos-dash">0</p>
+                                <p class="text-xs text-slate-400 mt-1">Licencias favoritas</p>
+                                <button onclick="vaciarFavoritos()" class="mt-4 text-xs bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-4 py-1.5 rounded-lg transition">
+                                    <i class="fas fa-trash"></i> Vaciar favoritos
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-xl mb-8">
+                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <i class="fas fa-shopping-cart text-green-400"></i> Carrito de Compras
+                            </h3>
+                            <div id="lista-carrito-dash" class="space-y-2 max-h-96 overflow-y-auto">
+                                <p class="text-slate-400 text-sm text-center py-8">No hay licencias en el carrito</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-slate-400">Total:</span>
+                                    <span class="font-bold text-2xl text-green-400" id="total-precio-dash">$0.00</span>
+                                </div>
+                                <button onclick="enviarCarritoWhatsApp()" class="bg-[#25D366] hover:bg-[#128C7E] px-5 py-2 rounded-lg text-white font-bold transition shadow-lg">
+                                    <i class="fab fa-whatsapp"></i> Enviar pedido
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-xl">
+                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <i class="fas fa-heart text-red-400"></i> Licencias Favoritas
+                            </h3>
+                            <div id="lista-favoritos-dash" class="flex flex-wrap gap-2 min-h-[100px]">
+                                <p class="text-slate-400 text-sm w-full text-center py-8">No hay favoritos aún</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <span class="text-[8px] bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded-full">🌐 En vivo</span>
+
+                    <!-- ==========================================
+                         TARJETA IP PÚBLICA
+                         ========================================== -->
+                    <div class="glass-card p-4 rounded-xl mb-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-network-wired text-cyan-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] text-slate-400 uppercase tracking-wider">Tu IP Pública</p>
+                                    <div class="flex items-center gap-2">
+                                        <span id="ip-publica-valor" class="text-white font-mono text-base font-bold">Cargando...</span>
+                                        <button onclick="copiarIPPublica()" class="text-slate-400 hover:text-cyan-400 transition text-xs bg-slate-800/50 px-2 py-1 rounded">
+                                            <i class="fas fa-copy"></i> Copiar
+                                        </button>
+                                    </div>
+                                    <p id="ip-ubicacion-valor" class="text-[8px] text-slate-500 mt-1">📍 Obteniendo ubicación...</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[8px] bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded-full">🌐 En vivo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         TARJETA ADB - CONECTAR DISPOSITIVO ANDROID
+                         ========================================== -->
+                    <div class="glass-card p-4 rounded-xl mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 bg-orange-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-android text-orange-400 text-lg"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white">Diagnóstico ADB</h3>
+                                <span class="text-[8px] bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">Beta</span>
+                            </div>
+                            <button id="btn-conectar-adb" class="text-xs bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-3 py-1.5 rounded-lg transition shadow-md">
+                                <i class="fas fa-plug mr-1"></i> Conectar dispositivo
+                            </button>
+                        </div>
+                        
+                        <div id="adb-estado" class="text-[10px] text-slate-400 mb-3 flex items-center gap-2">
+                            <i class="fas fa-info-circle text-orange-400/70"></i>
+                            <span>Conecta tu Android vía USB con depuración activada</span>
+                        </div>
+
+                        <div id="adb-info-container" class="hidden bg-slate-800/50 rounded-lg p-3 mb-3 border border-orange-500/20">
+                            <div class="flex justify-between items-start">
+                                <div class="space-y-1 text-[11px] w-full">
+                                    <div class="flex justify-between border-b border-slate-700 pb-1">
+                                        <span class="text-slate-400">Modelo:</span>
+                                        <span id="adb-modelo" class="text-white font-mono">---</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-slate-700 pb-1">
+                                        <span class="text-slate-400">Fabricante:</span>
+                                        <span id="adb-fabricante" class="text-white font-mono">---</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-slate-700 pb-1">
+                                        <span class="text-slate-400">Android:</span>
+                                        <span id="adb-android" class="text-white font-mono">---</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-slate-700 pb-1">
+                                        <span class="text-slate-400">IMEI / Serial:</span>
+                                        <span id="adb-serial" class="text-white font-mono text-[10px]">---</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-slate-700 pb-1">
+                                        <span class="text-slate-400">Batería:</span>
+                                        <span id="adb-bateria" class="text-white font-mono">---</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-400">Root:</span>
+                                        <span id="adb-root" class="text-white font-mono">---</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="adb-error" class="hidden bg-red-500/10 border border-red-500/30 rounded-lg p-2 mb-3">
+                            <p class="text-[10px] text-red-400" id="adb-error-msg"></p>
+                        </div>
+
+                        <div class="flex gap-2 mt-2">
+                            <button id="btn-copiar-adb" disabled class="flex-1 text-xs bg-slate-700/50 text-slate-400 px-3 py-1.5 rounded-lg transition cursor-not-allowed">
+                                <i class="fas fa-copy mr-1"></i> Copiar información
+                            </button>
+                        </div>
+                        <p class="text-[8px] text-slate-500 mt-2 text-center">
+                            <i class="fas fa-shield-alt mr-1"></i> Solo lectura - No se almacena ningún dato
+                        </p>
                     </div>
                 </div>
             </div>
-</div>
+        </div>
 
 <!-- ==========================================
      Métodos de Pago - 3D FLOAT (SIN CORTES AL ACERCARSE)
@@ -5382,7 +5451,7 @@ function copiarCuenta(numero) {
 }
 
 // ===============================
-// DASHBOARD SOLO PARA LICENCIAS + IP PÚBLICA
+// DASHBOARD SOLO PARA LICENCIAS + IP PÚBLICA + ADB
 // ===============================
 
 // Inicializar datos desde localStorage
@@ -5403,14 +5472,12 @@ async function obtenerIPPublica() {
         ipPublicaActual = datos.ip || 'No disponible';
         ipUbicacionActual = `${datos.city || 'Desconocida'}, ${datos.region || ''}, ${datos.country_name || ''}`;
         
-        // Actualizar elementos del dashboard si existen
         const ipSpan = document.getElementById('ip-publica-valor');
         const ubicacionSpan = document.getElementById('ip-ubicacion-valor');
         
         if (ipSpan) ipSpan.textContent = ipPublicaActual;
         if (ubicacionSpan) ubicacionSpan.innerHTML = `📍 ${ipUbicacionActual} | ${datos.org || ''}`;
         
-        // Guardar en localStorage
         localStorage.setItem('cliente_ip', ipPublicaActual);
         
     } catch (error) {
@@ -5421,7 +5488,6 @@ async function obtenerIPPublica() {
     }
 }
 
-// Función para copiar la IP
 function copiarIPPublica() {
     if (ipPublicaActual && ipPublicaActual !== 'Cargando...' && ipPublicaActual !== 'No disponible') {
         navigator.clipboard.writeText(ipPublicaActual);
@@ -5432,10 +5498,144 @@ function copiarIPPublica() {
 }
 
 // ===============================
+// ADB - CONEXIÓN Y LECTURA DE DISPOSITIVO
+// ===============================
+let adbDispositivo = null;
+let adbDatosActuales = {};
+
+async function conectarADB() {
+    const btnConectar = document.getElementById('btn-conectar-adb');
+    const estadoDiv = document.getElementById('adb-estado');
+    const infoContainer = document.getElementById('adb-info-container');
+    const errorDiv = document.getElementById('adb-error');
+    const errorMsg = document.getElementById('adb-error-msg');
+    const btnCopiar = document.getElementById('btn-copiar-adb');
+    
+    if (!btnConectar) return;
+    
+    try {
+        // Cambiar estado a "Conectando..."
+        btnConectar.disabled = true;
+        btnConectar.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Conectando...';
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-spinner fa-spin text-orange-400"></i> <span>Conectando al dispositivo...</span>';
+        
+        // Verificar si el navegador soporta WebUSB
+        if (!navigator.usb) {
+            throw new Error('Tu navegador no soporta WebUSB. Usa Chrome, Edge u Opera.');
+        }
+        
+        // Solicitar dispositivo USB (filtro para dispositivos Android)
+        const device = await navigator.usb.requestDevice({
+            filters: [
+                { classCode: 0xff, subclassCode: 0x42 } // ADB interface
+            ]
+        });
+        
+        adbDispositivo = device;
+        
+        // Abrir conexión
+        await device.open();
+        
+        // Seleccionar la interfaz ADB
+        const configuration = device.configurations[0];
+        const usbInterface = configuration.interfaces.find(iface => 
+            iface.interfaceClass === 0xff && iface.interfaceSubclass === 0x42
+        );
+        
+        if (!usbInterface) {
+            throw new Error('No se encontró la interfaz ADB en el dispositivo');
+        }
+        
+        await device.claimInterface(usbInterface.interfaceNumber);
+        
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-check-circle text-green-400"></i> <span>Dispositivo conectado. Leyendo información...</span>';
+        
+        // Leer información del dispositivo mediante comandos ADB simples
+        // Nota: Esto es una implementación básica. Para comandos avanzados se necesita implementar el protocolo ADB completo.
+        
+        // Simulación de lectura de propiedades (en una implementación real se enviarían comandos ADB)
+        // Por ahora, mostramos un mensaje de que la función está en desarrollo
+        if (infoContainer) {
+            infoContainer.classList.remove('hidden');
+            document.getElementById('adb-modelo').textContent = 'Función en desarrollo';
+            document.getElementById('adb-fabricante').textContent = 'Conectado vía WebUSB';
+            document.getElementById('adb-android').textContent = 'Implementación avanzada requerida';
+            document.getElementById('adb-serial').textContent = 'Para comandos ADB completos';
+            document.getElementById('adb-bateria').textContent = 'Se necesita librería ADB';
+            document.getElementById('adb-root').textContent = 'Pendiente';
+            
+            adbDatosActuales = {
+                modelo: 'Función en desarrollo',
+                fabricante: 'Conectado vía WebUSB',
+                android: 'Implementación avanzada requerida',
+                serial: 'Para comandos ADB completos',
+                bateria: 'Se necesita librería ADB',
+                root: 'Pendiente'
+            };
+        }
+        
+        if (errorDiv) errorDiv.classList.add('hidden');
+        if (btnCopiar) btnCopiar.disabled = false;
+        
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-check-circle text-green-400"></i> <span>Dispositivo conectado correctamente</span>';
+        
+        mostrarNotificacion('✅ Dispositivo conectado correctamente');
+        
+    } catch (error) {
+        console.error('Error ADB:', error);
+        if (errorDiv && errorMsg) {
+            errorMsg.textContent = error.message || 'Error al conectar el dispositivo. Asegúrate de tener depuración USB activada.';
+            errorDiv.classList.remove('hidden');
+        }
+        if (estadoDiv) estadoDiv.innerHTML = '<i class="fas fa-exclamation-triangle text-red-400"></i> <span>Error de conexión</span>';
+        mostrarNotificacion('⚠️ Error al conectar: ' + (error.message || 'Desconocido'));
+    } finally {
+        if (btnConectar) {
+            btnConectar.disabled = false;
+            btnConectar.innerHTML = '<i class="fas fa-plug mr-1"></i> Conectar dispositivo';
+        }
+    }
+}
+
+function copiarInfoADB() {
+    if (!adbDatosActuales || Object.keys(adbDatosActuales).length === 0) {
+        mostrarNotificacion('⚠️ No hay información para copiar');
+        return;
+    }
+    
+    const textoInfo = `📱 INFORMACIÓN DEL DISPOSITIVO 📱
+    
+Modelo: ${adbDatosActuales.modelo || '---'}
+Fabricante: ${adbDatosActuales.fabricante || '---'}
+Versión Android: ${adbDatosActuales.android || '---'}
+IMEI/Serial: ${adbDatosActuales.serial || '---'}
+Batería: ${adbDatosActuales.bateria || '---'}
+Root: ${adbDatosActuales.root || '---'}
+
+📅 ${new Date().toLocaleString()}
+🔗 J.F Unlock Server`;
+    
+    navigator.clipboard.writeText(textoInfo);
+    mostrarNotificacion('📋 Información copiada al portapapeles');
+}
+
+// Inicializar eventos ADB cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    const btnConectar = document.getElementById('btn-conectar-adb');
+    const btnCopiar = document.getElementById('btn-copiar-adb');
+    
+    if (btnConectar) {
+        btnConectar.addEventListener('click', conectarADB);
+    }
+    if (btnCopiar) {
+        btnCopiar.addEventListener('click', copiarInfoADB);
+    }
+});
+
+// ===============================
 // AGREGAR AL CARRITO
 // ===============================
 function agregarAlCarrito(nombre, precio) {
-    // Verificar si ya existe en el carrito
     const existe = carritoLicencias.find(item => item.nombre === nombre);
     if (existe) {
         mostrarNotificacion(`⚠️ ${nombre} ya está en el carrito`);
@@ -5455,9 +5655,6 @@ function agregarAlCarrito(nombre, precio) {
     actualizarDashboard();
 }
 
-// ===============================
-// AGREGAR A FAVORITOS
-// ===============================
 function agregarAFavoritos(nombre) {
     if (!favoritosLicencias.includes(nombre)) {
         favoritosLicencias.push(nombre);
@@ -5470,9 +5667,6 @@ function agregarAFavoritos(nombre) {
     actualizarDashboard();
 }
 
-// ===============================
-// ELIMINAR DEL CARRITO
-// ===============================
 function eliminarDelCarrito(index) {
     carritoLicencias.splice(index, 1);
     localStorage.setItem('jf_carrito_licencias', JSON.stringify(carritoLicencias));
@@ -5481,9 +5675,6 @@ function eliminarDelCarrito(index) {
     actualizarDashboard();
 }
 
-// ===============================
-// VACIAR CARRITO
-// ===============================
 function vaciarCarrito() {
     if (confirm('¿Vaciar todo el carrito?')) {
         carritoLicencias = [];
@@ -5494,9 +5685,6 @@ function vaciarCarrito() {
     }
 }
 
-// ===============================
-// VACIAR FAVORITOS
-// ===============================
 function vaciarFavoritos() {
     if (confirm('¿Vaciar todos los favoritos?')) {
         favoritosLicencias = [];
@@ -5507,9 +5695,6 @@ function vaciarFavoritos() {
     }
 }
 
-// ===============================
-// ENVIAR CARRITO POR WHATSAPP
-// ===============================
 function enviarCarritoWhatsApp() {
     if (carritoLicencias.length === 0) {
         mostrarNotificacion('⚠️ El carrito está vacío');
@@ -5530,9 +5715,6 @@ function enviarCarritoWhatsApp() {
     window.open(`https://wa.me/18299778417?text=${mensaje}`, '_blank');
 }
 
-// ===============================
-// ACTUALIZAR CONTADORES (para el menú lateral)
-// ===============================
 function actualizarContadorCarrito() {
     const contador = document.getElementById('menu-contador-carrito');
     if (contador) {
@@ -5559,11 +5741,7 @@ function actualizarContadorFavoritos() {
     }
 }
 
-// ===============================
-// NOTIFICACIONES FLOTANTES
-// ===============================
 function mostrarNotificacion(mensaje) {
-    // Eliminar notificación anterior si existe
     const notifAnterior = document.querySelector('.notificacion-licencia');
     if (notifAnterior) notifAnterior.remove();
     
@@ -5579,11 +5757,7 @@ function mostrarNotificacion(mensaje) {
     }, 2500);
 }
 
-// ===============================
-// ACTUALIZAR DASHBOARD
-// ===============================
 function actualizarDashboard() {
-    // Actualizar contadores
     const totalCarrito = document.getElementById('total-carrito-dash');
     const totalFavoritos = document.getElementById('total-favoritos-dash');
     const totalPrecio = document.getElementById('total-precio-dash');
@@ -5593,7 +5767,6 @@ function actualizarDashboard() {
     if (totalCarrito) totalCarrito.innerText = carritoLicencias.length;
     if (totalFavoritos) totalFavoritos.innerText = favoritosLicencias.length;
     
-    // Actualizar carrito
     if (listaCarrito) {
         if (carritoLicencias.length === 0) {
             listaCarrito.innerHTML = '<p class="text-slate-400 text-sm text-center py-8">No hay licencias en el carrito</p>';
@@ -5613,7 +5786,6 @@ function actualizarDashboard() {
         }
     }
     
-    // Actualizar favoritos
     if (listaFavoritos) {
         if (favoritosLicencias.length === 0) {
             listaFavoritos.innerHTML = '<p class="text-slate-400 text-sm w-full text-center py-8">No hay favoritos aún</p>';
@@ -5626,16 +5798,12 @@ function actualizarDashboard() {
         }
     }
     
-    // Actualizar IP en el dashboard si los elementos existen
     const ipValor = document.getElementById('ip-publica-valor');
     const ipUbic = document.getElementById('ip-ubicacion-valor');
     if (ipValor) ipValor.textContent = ipPublicaActual;
     if (ipUbic && ipUbicacionActual) ipUbic.innerHTML = `📍 ${ipUbicacionActual}`;
 }
 
-// ===============================
-// EXPORTAR DATOS (BACKUP)
-// ===============================
 function exportarDatosLicencias() {
     const datos = {
         carrito: carritoLicencias,
@@ -5654,9 +5822,6 @@ function exportarDatosLicencias() {
     mostrarNotificacion('💾 Datos exportados correctamente');
 }
 
-// ===============================
-// IMPORTAR DATOS (RESTAURAR BACKUP)
-// ===============================
 function importarDatosLicencias() {
     const input = document.createElement('input');
     input.type = 'file';
@@ -5692,14 +5857,10 @@ function importarDatosLicencias() {
     input.click();
 }
 
-// ===============================
-// INICIALIZAR IP Y DASHBOARD
-// ===============================
-// Ejecutar al cargar
+// Inicializar
 actualizarContadorCarrito();
 actualizarContadorFavoritos();
 
-// Inicializar dashboard y obtener IP
 document.addEventListener('DOMContentLoaded', function() {
     actualizarDashboard();
     obtenerIPPublica();
@@ -5712,37 +5873,31 @@ document.addEventListener('DOMContentLoaded', function() {
 (function() {
     'use strict';
     
-    // 1. BLOQUEAR CLICK DERECHO (menú contextual)
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
         return false;
     });
     
-    // 2. BLOQUEAR TECLAS DE COPIA Y DESARROLLADOR
     document.addEventListener('keydown', function(e) {
-        // Bloquear Ctrl+C, Ctrl+X, Ctrl+V, Ctrl+U, Ctrl+S
         if (e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'u' || e.key === 's')) {
             e.preventDefault();
             return false;
         }
         
-        // Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
         if (e.key === 'F12' || 
             (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))) {
             e.preventDefault();
             return false;
         }
         
-        // Bloquear Ctrl+Shift+K (Firefox)
         if (e.ctrlKey && e.shiftKey && e.key === 'K') {
             e.preventDefault();
             return false;
         }
     });
     
-    // 3. DETECTAR CUANDO SE ABREN HERRAMIENTAS DE DESARROLLADOR
     let devtoolsOpen = false;
-    const threshold = 160; // umbral de detección
+    const threshold = 160;
     
     function detectDevTools() {
         const widthThreshold = window.outerWidth - window.innerWidth > threshold;
@@ -5751,7 +5906,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (widthThreshold || heightThreshold) {
             if (!devtoolsOpen) {
                 devtoolsOpen = true;
-                // Limpiar el contenido de la página
                 document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #0f172a; color: #ef4444; font-family: monospace; text-align: center; padding: 20px;"><div><h1>🔒 ACCESO DENEGADO</h1><p>Las herramientas de desarrollador están deshabilitadas en este sitio.</p><p>Por favor, ciérralas para continuar.</p></div></div>';
                 document.body.style.background = '#0f172a';
             }
@@ -5760,22 +5914,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Ejecutar detección periódicamente
     setInterval(detectDevTools, 1000);
     
-    // 4. BLOQUEAR SELECCIÓN DE TEXTO (opcional, evita copiar seleccionando)
     document.addEventListener('selectstart', function(e) {
         e.preventDefault();
         return false;
     });
     
-    // 5. BLOQUEAR DRAG & DROP (arrastrar imágenes/texto)
     document.addEventListener('dragstart', function(e) {
         e.preventDefault();
         return false;
     });
     
-    // 6. BLOQUEAR COPIADO DESDE EL PORTAPAPELES (evento copy)
     document.addEventListener('copy', function(e) {
         e.preventDefault();
         return false;
@@ -5784,299 +5934,295 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('🔒 Protecciones activadas');
 })();
 </script>
-    <!-- ==========================================
-         MODAL GENERADOR IMEI VIP
-         ========================================== -->
-    <div id="modal-generador-imei" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
-        <div class="relative w-full max-w-md bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl shadow-2xl border border-teal-500/30">
-            
-            <button onclick="cerrarGeneradorIMEI()" class="absolute top-3 right-3 text-slate-400 hover:text-white text-xl transition z-10">
-                <i class="fas fa-times"></i>
+
+<!-- ==========================================
+     MODAL GENERADOR IMEI VIP
+     ========================================== -->
+<div id="modal-generador-imei" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div class="relative w-full max-w-md bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl shadow-2xl border border-red-500/30">
+        
+        <button onclick="cerrarGeneradorIMEI()" class="absolute top-3 right-3 text-slate-400 hover:text-white text-xl transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="p-6">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 mx-auto bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-red-500/30">
+                    <i class="fas fa-qrcode text-3xl text-white"></i>
+                </div>
+                <h2 class="text-2xl font-bold bg-gradient-to-r from-red-400 to-rose-400 bg-clip-text text-transparent">
+                    GENERADOR IMEI VIP
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">Herramienta gratuita para nuestros clientes</p>
+                <div class="flex justify-center gap-2 mt-2">
+                    <span class="text-[8px] bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full">🎁 100% GRATIS</span>
+                    <span class="text-[8px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">✨ IMEIs Únicos</span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="text-xs text-slate-400 block mb-1">
+                    <i class="fas fa-microchip mr-1"></i> TAC (Primeros 8 dígitos)
+                </label>
+                <div class="flex gap-2">
+                    <input type="text" id="imei-tac" maxlength="8" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-red-500 transition" placeholder="Ej: 35623412" value="35623412">
+                    <button onclick="generarTACAleatorio()" class="bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-3 py-2 rounded-lg transition text-xs font-bold">
+                        <i class="fas fa-dice"></i> ALEATORIO
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-lg p-3 mb-4 text-center border border-slate-700">
+                <div class="flex justify-between items-center">
+                    <span class="text-[10px] text-slate-400">🎲 IMEIs generados hoy</span>
+                    <span id="imei-contador" class="text-red-400 font-bold text-lg">0</span>
+                </div>
+                <div class="flex justify-between items-center mt-1">
+                    <span class="text-[10px] text-slate-400">💎 Únicos en tu sesión</span>
+                    <span id="imei-contador-unico" class="text-rose-400 font-bold text-lg">0</span>
+                </div>
+            </div>
+
+            <button onclick="generarIMEI()" class="w-full bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-bold py-3 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg shadow-red-500/30 mb-4">
+                <i class="fas fa-magic mr-2"></i> GENERAR IMEI
             </button>
 
-            <div class="p-6">
-                <div class="text-center mb-6">
-                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-teal-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-teal-500/30">
-                        <i class="fas fa-qrcode text-3xl text-white"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
-                        GENERADOR IMEI VIP
-                    </h2>
-                    <p class="text-xs text-slate-400 mt-1">Herramienta gratuita para nuestros clientes</p>
-                    <div class="flex justify-center gap-2 mt-2">
-                        <span class="text-[8px] bg-teal-500/20 text-teal-400 px-2 py-0.5 rounded-full">🎁 100% GRATIS</span>
-                        <span class="text-[8px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">✨ IMEIs Únicos</span>
-                    </div>
+            <div id="imei-resultado-container" class="hidden bg-slate-800/80 rounded-xl p-4 mb-4 border border-red-500/30">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] text-red-400 uppercase tracking-wider">✅ IMEI generado</span>
+                    <span class="text-[8px] text-rose-400 bg-rose-500/20 px-2 py-0.5 rounded-full">Válido</span>
                 </div>
-
-                <div class="mb-4">
-                    <label class="text-xs text-slate-400 block mb-1">
-                        <i class="fas fa-microchip mr-1"></i> TAC (Primeros 8 dígitos)
-                    </label>
-                    <div class="flex gap-2">
-                        <input type="text" id="imei-tac" maxlength="8" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-teal-500 transition" placeholder="Ej: 35623412" value="35623412">
-                        <button onclick="generarTACAleatorio()" class="bg-teal-500/20 hover:bg-teal-500 text-teal-400 hover:text-white px-3 py-2 rounded-lg transition text-xs font-bold">
-                            <i class="fas fa-dice"></i> ALEATORIO
-                        </button>
-                    </div>
+                <div class="flex items-center justify-between gap-3">
+                    <code id="imei-generado" class="text-white font-mono text-lg tracking-wider bg-slate-900/50 px-3 py-2 rounded-lg flex-1 text-center">---</code>
+                    <button onclick="copiarIMEI()" class="bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white px-3 py-2 rounded-lg transition">
+                        <i class="fas fa-copy"></i>
+                    </button>
                 </div>
+            </div>
 
-                <div class="bg-slate-800/50 rounded-lg p-3 mb-4 text-center border border-slate-700">
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] text-slate-400">🎲 IMEIs generados hoy</span>
-                        <span id="imei-contador" class="text-teal-400 font-bold text-lg">0</span>
-                    </div>
-                    <div class="flex justify-between items-center mt-1">
-                        <span class="text-[10px] text-slate-400">💎 Únicos en tu sesión</span>
-                        <span id="imei-contador-unico" class="text-emerald-400 font-bold text-lg">0</span>
-                    </div>
+            <div class="mt-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-wider">
+                        <i class="fas fa-history mr-1"></i> Últimos 5 generados
+                    </span>
+                    <button onclick="limpiarHistorialIMEI()" class="text-[8px] text-red-400 hover:text-red-300 transition">Limpiar</button>
                 </div>
-
-                <button onclick="generarIMEI()" class="w-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold py-3 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg shadow-teal-500/30 mb-4">
-                    <i class="fas fa-magic mr-2"></i> GENERAR IMEI
-                </button>
-
-                <div id="imei-resultado-container" class="hidden bg-slate-800/80 rounded-xl p-4 mb-4 border border-teal-500/30">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-[10px] text-teal-400 uppercase tracking-wider">✅ IMEI generado</span>
-                        <span class="text-[8px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded-full">Válido</span>
-                    </div>
-                    <div class="flex items-center justify-between gap-3">
-                        <code id="imei-generado" class="text-white font-mono text-lg tracking-wider bg-slate-900/50 px-3 py-2 rounded-lg flex-1 text-center">---</code>
-                        <button onclick="copiarIMEI()" class="bg-teal-500/20 hover:bg-teal-500 text-teal-400 hover:text-white px-3 py-2 rounded-lg transition">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
+                <div id="imei-historial" class="bg-slate-800/30 rounded-lg p-2 max-h-28 overflow-y-auto space-y-1">
+                    <p class="text-[10px] text-slate-500 text-center py-2">Aún no hay IMEIs generados</p>
                 </div>
+            </div>
 
-                <div class="mt-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider">
-                            <i class="fas fa-history mr-1"></i> Últimos 5 generados
-                        </span>
-                        <button onclick="limpiarHistorialIMEI()" class="text-[8px] text-red-400 hover:text-red-300 transition">Limpiar</button>
-                    </div>
-                    <div id="imei-historial" class="bg-slate-800/30 rounded-lg p-2 max-h-28 overflow-y-auto space-y-1">
-                        <p class="text-[10px] text-slate-500 text-center py-2">Aún no hay IMEIs generados</p>
-                    </div>
-                </div>
-
-                <div class="mt-4 pt-3 border-t border-slate-700 text-center">
-                    <p class="text-[8px] text-slate-500">
-                        <i class="fas fa-shield-alt mr-1"></i> Los IMEIs son generados aleatoriamente y son estructuralmente válidos.<br>
-                        Herramienta exclusiva para clientes VIP.
-                    </p>
-                </div>
+            <div class="mt-4 pt-3 border-t border-slate-700 text-center">
+                <p class="text-[8px] text-slate-500">
+                    <i class="fas fa-shield-alt mr-1"></i> Los IMEIs son generados aleatoriamente y son estructuralmente válidos.<br>
+                    Herramienta exclusiva para clientes VIP.
+                </p>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-    // ==========================================
-    // GENERADOR IMEI VIP - FUNCIONES (VERSIÓN SEGURA)
-    // ==========================================
-    
-    // Algoritmo de Luhn
-    function calcularDigitoLuhn(imeiSinDigito) {
-        let suma = 0;
-        let duplicar = true;
-        for (let i = imeiSinDigito.length - 1; i >= 0; i--) {
-            let digito = parseInt(imeiSinDigito.charAt(i));
-            if (duplicar) {
-                digito *= 2;
-                if (digito > 9) digito = digito.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
-            }
-            suma += digito;
-            duplicar = !duplicar;
+<script>
+// ==========================================
+// GENERADOR IMEI VIP - FUNCIONES
+// ==========================================
+
+function calcularDigitoLuhn(imeiSinDigito) {
+    let suma = 0;
+    let duplicar = true;
+    for (let i = imeiSinDigito.length - 1; i >= 0; i--) {
+        let digito = parseInt(imeiSinDigito.charAt(i));
+        if (duplicar) {
+            digito *= 2;
+            if (digito > 9) digito = digito.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
         }
-        return (10 - (suma % 10)) % 10;
+        suma += digito;
+        duplicar = !duplicar;
     }
+    return (10 - (suma % 10)) % 10;
+}
 
-    function generarIMEICompleto(tac, snr) {
-        const imei14 = tac.toString() + snr.toString().padStart(6, '0');
-        return imei14 + calcularDigitoLuhn(imei14);
-    }
+function generarIMEICompleto(tac, snr) {
+    const imei14 = tac.toString() + snr.toString().padStart(6, '0');
+    return imei14 + calcularDigitoLuhn(imei14);
+}
 
-    function getHistorialIMEI() {
-        try {
-            const h = localStorage.getItem('jf_imei_historial');
-            return h ? JSON.parse(h) : [];
-        } catch(e) { return []; }
-    }
+function getHistorialIMEI() {
+    try {
+        const h = localStorage.getItem('jf_imei_historial');
+        return h ? JSON.parse(h) : [];
+    } catch(e) { return []; }
+}
 
-    function guardarHistorialIMEI(h) {
-        localStorage.setItem('jf_imei_historial', JSON.stringify(h));
-    }
+function guardarHistorialIMEI(h) {
+    localStorage.setItem('jf_imei_historial', JSON.stringify(h));
+}
 
-    function getContadorHoy() {
-        try {
-            const hoy = new Date().toDateString();
-            const data = localStorage.getItem('jf_imei_contador');
-            if (!data) return { fecha: hoy, total: 0, unicos: 0 };
-            const p = JSON.parse(data);
-            if (p.fecha !== hoy) return { fecha: hoy, total: 0, unicos: 0 };
-            return p;
-        } catch(e) { return { fecha: new Date().toDateString(), total: 0, unicos: 0 }; }
-    }
-
-    function guardarContadorHoy(total, unicos) {
+function getContadorHoy() {
+    try {
         const hoy = new Date().toDateString();
-        localStorage.setItem('jf_imei_contador', JSON.stringify({ fecha: hoy, total: total, unicos: unicos }));
-    }
+        const data = localStorage.getItem('jf_imei_contador');
+        if (!data) return { fecha: hoy, total: 0, unicos: 0 };
+        const p = JSON.parse(data);
+        if (p.fecha !== hoy) return { fecha: hoy, total: 0, unicos: 0 };
+        return p;
+    } catch(e) { return { fecha: new Date().toDateString(), total: 0, unicos: 0 }; }
+}
 
-    function generarSNR() {
-        return Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-    }
+function guardarContadorHoy(total, unicos) {
+    const hoy = new Date().toDateString();
+    localStorage.setItem('jf_imei_contador', JSON.stringify({ fecha: hoy, total: total, unicos: unicos }));
+}
 
-    function generarTACAleatorio() {
-        const primeros = Math.floor(Math.random() * 7) + 3;
-        const resto = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
-        return primeros + resto;
-    }
+function generarSNR() {
+    return Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+}
 
-    function actualizarHistorialVisual() {
-        const historial = getHistorialIMEI();
-        const container = document.getElementById('imei-historial');
-        if (!container) return;
-        if (historial.length === 0) {
-            container.innerHTML = '<p class="text-[10px] text-slate-500 text-center py-2">Aún no hay IMEIs generados</p>';
-            return;
+function generarTACAleatorio() {
+    const primeros = Math.floor(Math.random() * 7) + 3;
+    const resto = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
+    return primeros + resto;
+}
+
+function actualizarHistorialVisual() {
+    const historial = getHistorialIMEI();
+    const container = document.getElementById('imei-historial');
+    if (!container) return;
+    if (historial.length === 0) {
+        container.innerHTML = '<p class="text-[10px] text-slate-500 text-center py-2">Aún no hay IMEIs generados</p>';
+        return;
+    }
+    container.innerHTML = historial.slice(0,5).map(imei => `
+        <div class="flex items-center justify-between bg-slate-800/50 px-2 py-1 rounded text-[10px]">
+            <code class="text-red-300 font-mono">${imei}</code>
+            <button onclick="copiarIMEIHistorial('${imei}')" class="text-slate-400 hover:text-red-400 transition">
+                <i class="fas fa-copy text-[9px]"></i>
+            </button>
+        </div>
+    `).join('');
+}
+
+function mostrarNotif(mensaje) {
+    const notif = document.createElement('div');
+    notif.className = 'fixed bottom-6 right-6 bg-slate-800 text-white text-xs px-4 py-2 rounded-lg shadow-lg z-[200]';
+    notif.innerHTML = mensaje;
+    document.body.appendChild(notif);
+    setTimeout(() => notif.remove(), 2000);
+}
+
+window.generarIMEI = function() {
+    const tacInput = document.getElementById('imei-tac');
+    if (!tacInput) return;
+    let tac = tacInput.value.trim();
+    if (!tac || tac.length !== 8 || !/^\d+$/.test(tac)) {
+        mostrarNotif('⚠️ El TAC debe tener exactamente 8 dígitos numéricos');
+        return;
+    }
+    let historial = getHistorialIMEI();
+    let contador = getContadorHoy();
+    let nuevoIMEI = null;
+    for (let intentos = 0; intentos < 100; intentos++) {
+        const snr = generarSNR();
+        const imei = generarIMEICompleto(tac, snr);
+        if (!historial.includes(imei)) {
+            nuevoIMEI = imei;
+            break;
         }
-        container.innerHTML = historial.slice(0,5).map(imei => `
-            <div class="flex items-center justify-between bg-slate-800/50 px-2 py-1 rounded text-[10px]">
-                <code class="text-teal-300 font-mono">${imei}</code>
-                <button onclick="copiarIMEIHistorial('${imei}')" class="text-slate-400 hover:text-teal-400 transition">
-                    <i class="fas fa-copy text-[9px]"></i>
-                </button>
-            </div>
-        `).join('');
     }
-
-    // Función para mostrar notificación sin afectar otras funciones
-    function mostrarNotif(mensaje) {
-        const notif = document.createElement('div');
-        notif.className = 'fixed bottom-6 right-6 bg-slate-800 text-white text-xs px-4 py-2 rounded-lg shadow-lg z-[200]';
-        notif.innerHTML = mensaje;
-        document.body.appendChild(notif);
-        setTimeout(() => notif.remove(), 2000);
+    if (!nuevoIMEI) {
+        mostrarNotif('⚠️ No se pudo generar un IMEI único. Limpia el historial o cambia el TAC.');
+        return;
     }
+    historial.unshift(nuevoIMEI);
+    if (historial.length > 10) historial = historial.slice(0, 10);
+    guardarHistorialIMEI(historial);
+    contador.total++;
+    contador.unicos = historial.length;
+    guardarContadorHoy(contador.total, contador.unicos);
+    
+    const imeiGeneradoSpan = document.getElementById('imei-generado');
+    if (imeiGeneradoSpan) imeiGeneradoSpan.textContent = nuevoIMEI;
+    const resultadoContainer = document.getElementById('imei-resultado-container');
+    if (resultadoContainer) resultadoContainer.classList.remove('hidden');
+    const contadorSpan = document.getElementById('imei-contador');
+    if (contadorSpan) contadorSpan.textContent = contador.total;
+    const contadorUnicoSpan = document.getElementById('imei-contador-unico');
+    if (contadorUnicoSpan) contadorUnicoSpan.textContent = contador.unicos;
+    actualizarHistorialVisual();
+    mostrarNotif('✅ IMEI generado correctamente');
+};
 
-    // Funciones globales
-    window.generarIMEI = function() {
-        const tacInput = document.getElementById('imei-tac');
-        if (!tacInput) return;
-        let tac = tacInput.value.trim();
-        if (!tac || tac.length !== 8 || !/^\d+$/.test(tac)) {
-            mostrarNotif('⚠️ El TAC debe tener exactamente 8 dígitos numéricos');
-            return;
-        }
-        let historial = getHistorialIMEI();
-        let contador = getContadorHoy();
-        let nuevoIMEI = null;
-        for (let intentos = 0; intentos < 100; intentos++) {
-            const snr = generarSNR();
-            const imei = generarIMEICompleto(tac, snr);
-            if (!historial.includes(imei)) {
-                nuevoIMEI = imei;
-                break;
-            }
-        }
-        if (!nuevoIMEI) {
-            mostrarNotif('⚠️ No se pudo generar un IMEI único. Limpia el historial o cambia el TAC.');
-            return;
-        }
-        historial.unshift(nuevoIMEI);
-        if (historial.length > 10) historial = historial.slice(0, 10);
-        guardarHistorialIMEI(historial);
-        contador.total++;
-        contador.unicos = historial.length;
-        guardarContadorHoy(contador.total, contador.unicos);
-        
-        const imeiGeneradoSpan = document.getElementById('imei-generado');
-        if (imeiGeneradoSpan) imeiGeneradoSpan.textContent = nuevoIMEI;
-        const resultadoContainer = document.getElementById('imei-resultado-container');
-        if (resultadoContainer) resultadoContainer.classList.remove('hidden');
+window.generarTACAleatorio = function() {
+    const nuevoTAC = generarTACAleatorio();
+    const tacInput = document.getElementById('imei-tac');
+    if (tacInput) tacInput.value = nuevoTAC;
+    mostrarNotif('🎲 TAC aleatorio: ' + nuevoTAC);
+};
+
+window.copiarIMEI = function() {
+    const imeiSpan = document.getElementById('imei-generado');
+    if (!imeiSpan || imeiSpan.textContent === '---') {
+        mostrarNotif('⚠️ Primero genera un IMEI');
+        return;
+    }
+    navigator.clipboard.writeText(imeiSpan.textContent);
+    mostrarNotif('📋 IMEI copiado');
+};
+
+window.copiarIMEIHistorial = function(imei) {
+    navigator.clipboard.writeText(imei);
+    mostrarNotif('📋 IMEI copiado');
+};
+
+window.limpiarHistorialIMEI = function() {
+    if (confirm('¿Eliminar todo el historial de IMEIs generados?')) {
+        localStorage.removeItem('jf_imei_historial');
+        const contador = getContadorHoy();
+        guardarContadorHoy(contador.total, 0);
+        actualizarHistorialVisual();
+        const contadorUnicoSpan = document.getElementById('imei-contador-unico');
+        if (contadorUnicoSpan) contadorUnicoSpan.textContent = 0;
+        mostrarNotif('🗑️ Historial limpiado');
+    }
+};
+
+window.abrirGeneradorIMEI = function() {
+    const modal = document.getElementById('modal-generador-imei');
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        const contador = getContadorHoy();
         const contadorSpan = document.getElementById('imei-contador');
         if (contadorSpan) contadorSpan.textContent = contador.total;
         const contadorUnicoSpan = document.getElementById('imei-contador-unico');
         if (contadorUnicoSpan) contadorUnicoSpan.textContent = contador.unicos;
         actualizarHistorialVisual();
-        mostrarNotif('✅ IMEI generado correctamente');
-    };
-
-    window.generarTACAleatorio = function() {
-        const nuevoTAC = generarTACAleatorio();
-        const tacInput = document.getElementById('imei-tac');
-        if (tacInput) tacInput.value = nuevoTAC;
-        mostrarNotif('🎲 TAC aleatorio: ' + nuevoTAC);
-    };
-
-    window.copiarIMEI = function() {
-        const imeiSpan = document.getElementById('imei-generado');
-        if (!imeiSpan || imeiSpan.textContent === '---') {
-            mostrarNotif('⚠️ Primero genera un IMEI');
-            return;
-        }
-        navigator.clipboard.writeText(imeiSpan.textContent);
-        mostrarNotif('📋 IMEI copiado');
-    };
-
-    window.copiarIMEIHistorial = function(imei) {
-        navigator.clipboard.writeText(imei);
-        mostrarNotif('📋 IMEI copiado');
-    };
-
-    window.limpiarHistorialIMEI = function() {
-        if (confirm('¿Eliminar todo el historial de IMEIs generados?')) {
-            localStorage.removeItem('jf_imei_historial');
-            const contador = getContadorHoy();
-            guardarContadorHoy(contador.total, 0);
-            actualizarHistorialVisual();
-            const contadorUnicoSpan = document.getElementById('imei-contador-unico');
-            if (contadorUnicoSpan) contadorUnicoSpan.textContent = 0;
-            mostrarNotif('🗑️ Historial limpiado');
-        }
-    };
-
-    window.abrirGeneradorIMEI = function() {
-        const modal = document.getElementById('modal-generador-imei');
-        if (modal) {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            const contador = getContadorHoy();
-            const contadorSpan = document.getElementById('imei-contador');
-            if (contadorSpan) contadorSpan.textContent = contador.total;
-            const contadorUnicoSpan = document.getElementById('imei-contador-unico');
-            if (contadorUnicoSpan) contadorUnicoSpan.textContent = contador.unicos;
-            actualizarHistorialVisual();
-        }
-    };
-
-    window.cerrarGeneradorIMEI = function() {
-        const modal = document.getElementById('modal-generador-imei');
-        if (modal) {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-    };
-
-    // Cerrar con ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('modal-generador-imei');
-            if (modal && !modal.classList.contains('hidden')) {
-                cerrarGeneradorIMEI();
-            }
-        }
-    });
-
-    // Cerrar al hacer clic fuera
-    const modalElement = document.getElementById('modal-generador-imei');
-    if (modalElement) {
-        modalElement.addEventListener('click', function(e) {
-            if (e.target === this) cerrarGeneradorIMEI();
-        });
     }
-    </script>
+};
+
+window.cerrarGeneradorIMEI = function() {
+    const modal = document.getElementById('modal-generador-imei');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+};
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('modal-generador-imei');
+        if (modal && !modal.classList.contains('hidden')) {
+            cerrarGeneradorIMEI();
+        }
+    }
+});
+
+const modalElement = document.getElementById('modal-generador-imei');
+if (modalElement) {
+    modalElement.addEventListener('click', function(e) {
+        if (e.target === this) cerrarGeneradorIMEI();
+    });
+}
+</script>
 </body>
 </html>
