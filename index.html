@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -4901,7 +4900,8 @@ group-hover:scale-110 transition-all duration-500 shadow-xl shadow-cyan-400/10 g
     <footer id="contacto" class="mt-20 border-t border-slate-800 bg-slate-900/80 py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
-                <p class="text-slate-500 text-sm">Copyright © Powered By J.F Unlock Server Worldwide 2026 | Todos los derechos reservados</p>
+                <!-- ✅ REDIMENSIONADO PARA MÓVIL -->
+                <p class="text-slate-500 text-[9px] sm:text-sm text-center">Copyright © Powered By J.F Unlock Server Worldwide 2026 | Todos los derechos reservados</p>
             </div>
             <div class="flex gap-4">
                 <a href="https://wa.link/oug9xg" 
@@ -4915,13 +4915,97 @@ group-hover:scale-110 transition-all duration-500 shadow-xl shadow-cyan-400/10 g
                 </a>
             </div>
         </div>
-    </div>
-</div>
+        
+        <!-- ==========================================
+             NUESTRAS POLÍTICAS (NUEVO BLOQUE)
+             ========================================== -->
+        <div class="mt-12 pt-8 border-t border-slate-700/50">
+            <div class="text-center mb-6">
+                <h3 class="text-white font-bold uppercase tracking-widest text-lg mb-4">Nuestras Políticas</h3>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
+                    <button onclick="abrirPoliticas()" class="text-blue-400 hover:text-blue-200 transition-colors text-sm sm:text-base font-medium underline underline-offset-4 decoration-blue-500/30 hover:decoration-blue-400">
+                        Políticas de Privacidad
+                    </button>
+                    <button onclick="abrirCondiciones()" class="text-blue-400 hover:text-blue-200 transition-colors text-sm sm:text-base font-medium underline underline-offset-4 decoration-blue-500/30 hover:decoration-blue-400">
+                        Condiciones de Servicio
+                    </button>
+                    <button onclick="abrirAviso()" class="text-blue-400 hover:text-blue-200 transition-colors text-sm sm:text-base font-medium underline underline-offset-4 decoration-blue-500/30 hover:decoration-blue-400">
+                        Aviso Legal
+                    </button>
+                </div>
+            </div>
+        </div>
     </footer>
 
+<!-- ==========================================
+     MODAL POLÍTICAS DE PRIVACIDAD (PANTALLA COMPLETA)
+     ========================================== -->
+<div id="modal-politicas" class="hidden fixed inset-0 w-full h-full bg-slate-950 z-[60] overflow-y-auto p-6 space-y-10 animate-fade-in">
+    <div class="max-w-4xl mx-auto">
+        <button onclick="cerrarPoliticas()" class="text-blue-400 text-[10px] font-black uppercase mb-8 flex items-center gap-2 hover:text-white transition-colors">
+            <i class="fas fa-chevron-left"></i> Volver
+        </button>
+        <div class="glass-card p-8 rounded-2xl border border-blue-500/20">
+            <h2 class="text-3xl font-bold text-white mb-6">Políticas de Privacidad</h2>
+            <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+                <p><strong class="text-white">1. Información General.</strong> En J.F Unlock Services, dedicados al Soporte Técnico en Software Avanzado en Celulares en Línea con más de 14 años de experiencia, respetamos y protegemos su privacidad. Esta política establece cómo recopilamos, usamos y protegemos su información personal en cumplimiento con la Ley 172-13 de Protección de Datos Personales de la República Dominicana.</p>
+                <p><strong class="text-white">2. Datos que Recopilamos.</strong> Podemos recopilar datos de contacto (nombre, número de teléfono, correo electrónico), dirección IP, cookies y datos técnicos de su dispositivo para brindar nuestros servicios de manera eficiente.</p>
+                <p><strong class="text-white">3. Uso de la Información.</strong> Los datos proporcionados son utilizados exclusivamente para procesar solicitudes, brindar soporte técnico remoto, facturación, mejorar nuestra plataforma y enviar comunicaciones internas relacionadas con nuestros servicios.</p>
+                <p><strong class="text-white">4. Protección de Datos.</strong> Implementamos medidas de seguridad físicas, técnicas y administrativas para salvaguardar su información contra accesos no autorizados, alteración, divulgación o destrucción.</p>
+                <p><strong class="text-white">5. Derechos del Usuario.</strong> Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Para ejercer estos derechos, puede contactarnos a través de nuestros canales oficiales.</p>
+                <p><strong class="text-white">6. Retención de Datos.</strong> Conservamos su información solo durante el tiempo necesario para cumplir con los fines descritos en esta política, salvo obligaciones legales.</p>
+                <p><strong class="text-white">7. Prohibiciones.</strong> Queda estrictamente prohibida la extracción, reproducción, falsificación o uso indebido del contenido cargado en esta web, conforme a las leyes físicas y cibernéticas de la República Dominicana.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
+     MODAL CONDICIONES DE SERVICIO (PANTALLA COMPLETA)
+     ========================================== -->
+<div id="modal-condiciones" class="hidden fixed inset-0 w-full h-full bg-slate-950 z-[60] overflow-y-auto p-6 space-y-10 animate-fade-in">
+    <div class="max-w-4xl mx-auto">
+        <button onclick="cerrarCondiciones()" class="text-blue-400 text-[10px] font-black uppercase mb-8 flex items-center gap-2 hover:text-white transition-colors">
+            <i class="fas fa-chevron-left"></i> Volver
+        </button>
+        <div class="glass-card p-8 rounded-2xl border border-blue-500/20">
+            <h2 class="text-3xl font-bold text-white mb-6">Condiciones de Servicio</h2>
+            <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+                <p><strong class="text-white">1. Aceptación de Términos.</strong> Al acceder y utilizar los servicios de J.F Unlock Services, usted acepta plenamente las presentes Condiciones de Servicio.</p>
+                <p><strong class="text-white">2. Servicios Ofrecidos.</strong> Proporcionamos soporte técnico remoto, activación de licencias, reparación de software avanzado para celulares y otros servicios relacionados con la telefonía móvil.</p>
+                <p><strong class="text-white">3. Obligaciones del Usuario.</strong> El usuario se compromete a proporcionar información veraz y completa, y a no utilizar nuestros servicios para fines ilícitos o que infrinjan los derechos de terceros.</p>
+                <p><strong class="text-white">4. Pagos y Reembolsos.</strong> Los pagos se realizan mediante los métodos autorizados publicados en la web. Una vez realizado el pago, el servicio se procesa en los tiempos indicados. No se realizarán reembolsos una vez iniciado el servicio, salvo fallos comprobados de nuestra parte.</p>
+                <p><strong class="text-white">5. Garantías.</strong> Aunque contamos con 14 años de experiencia, no garantizamos resultados 100% en todos los dispositivos o situaciones, ya que existen factores técnicos externos que pueden afectar el proceso.</p>
+                <p><strong class="text-white">6. Limitación de Responsabilidad.</strong> J.F Unlock Services no se hace responsable de daños directos o indirectos derivados del mal uso de los servicios, pérdida de datos o daños en el equipo del cliente durante el proceso.</p>
+                <p><strong class="text-white">7. Modificaciones.</strong> Nos reservamos el derecho de actualizar estas condiciones en cualquier momento. Las modificaciones serán efectivas a partir de su publicación en esta web.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
+     MODAL AVISO LEGAL (PANTALLA COMPLETA)
+     ========================================== -->
+<div id="modal-aviso" class="hidden fixed inset-0 w-full h-full bg-slate-950 z-[60] overflow-y-auto p-6 space-y-10 animate-fade-in">
+    <div class="max-w-4xl mx-auto">
+        <button onclick="cerrarAviso()" class="text-blue-400 text-[10px] font-black uppercase mb-8 flex items-center gap-2 hover:text-white transition-colors">
+            <i class="fas fa-chevron-left"></i> Volver
+        </button>
+        <div class="glass-card p-8 rounded-2xl border border-blue-500/20">
+            <h2 class="text-3xl font-bold text-white mb-6">Aviso Legal</h2>
+            <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+                <p><strong class="text-white">1. Propiedad Intelectual.</strong> Todos los contenidos de este sitio web (textos, imágenes, logotipos, códigos fuente, diseños) son propiedad exclusiva de J.F Unlock Services, protegidos por las leyes de propiedad intelectual de la República Dominicana y tratados internacionales.</p>
+                <p><strong class="text-white">2. Prohibición de Extracción y Reproducción.</strong> Queda estrictamente prohibida la extracción, reproducción, distribución, modificación o falsificación total o parcial del contenido de esta web sin autorización expresa y por escrito de J.F Unlock Services.</p>
+                <p><strong class="text-white">3. Sanciones Legales.</strong> El incumplimiento de estas disposiciones dará lugar a acciones legales civiles y penales, conforme a lo establecido en la Ley 53-07 sobre Crímenes y Delitos de Alta Tecnología de la República Dominicana.</p>
+                <p><strong class="text-white">4. Responsabilidad.</strong> J.F Unlock Services no se hace responsable del uso indebido que los usuarios puedan dar a la información o herramientas proporcionadas en la web.</p>
+                <p><strong class="text-white">5. Jurisdicción.</strong> Para cualquier controversia, las partes se someten a los tribunales competentes de la República Dominicana, renunciando a cualquier otro fuero.</p>
+                <p><strong class="text-white">6. Contacto.</strong> Para cualquier consulta legal, puede comunicarse a través de nuestro correo de soporte o WhatsApp oficial.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-
-
 // ===============================
 // AVISO WEB EN MANTENIMIENTO 
 // ===============================
@@ -5140,6 +5224,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===============================
 function abrirLicencias() {
     cerrarMenu();
+    document.body.style.overflow = 'hidden';
     document.getElementById("tarjeta-activaciones").style.display = "none";
     document.getElementById("tarjeta-tools").style.display = "none";
     document.getElementById("tarjeta-soporte").style.display = "none";
@@ -5148,6 +5233,7 @@ function abrirLicencias() {
 }
 
 function cerrarLicencias() {
+    document.body.style.overflow = '';
     document.getElementById("tarjeta-activaciones").style.display = "block";
     document.getElementById("tarjeta-tools").style.display = "block";
     document.getElementById("tarjeta-soporte").style.display = "block";
@@ -5160,6 +5246,7 @@ function cerrarLicencias() {
 // ===============================
 function abrirCreditos() {
     cerrarMenu();
+    document.body.style.overflow = 'hidden';
     document.getElementById("tarjeta-activaciones").style.display = "none";
     document.getElementById("tarjeta-creditos").style.display = "none";
     document.getElementById("tarjeta-tools").style.display = "none";
@@ -5169,6 +5256,7 @@ function abrirCreditos() {
 }
 
 function cerrarCreditos() {
+    document.body.style.overflow = '';
     document.getElementById("tarjeta-activaciones").style.display = "block";
     document.getElementById("tarjeta-creditos").style.display = "block";
     document.getElementById("tarjeta-tools").style.display = "block";
@@ -5195,6 +5283,7 @@ if(buscadorCreditos) {
 // ===============================
 function abrirTools() {
     cerrarMenu();
+    document.body.style.overflow = 'hidden';
     document.getElementById("tarjeta-activaciones").style.display = "none";
     document.getElementById("tarjeta-tools").style.display = "none";
     document.getElementById("tarjeta-soporte").style.display = "none";
@@ -5203,6 +5292,7 @@ function abrirTools() {
 }
 
 function cerrarTools() {
+    document.body.style.overflow = '';
     document.getElementById("tarjeta-activaciones").style.display = "block";
     document.getElementById("tarjeta-tools").style.display = "block";
     document.getElementById("tarjeta-soporte").style.display = "block";
@@ -5216,6 +5306,7 @@ function cerrarTools() {
 // ===============================
 function abrirSoporte() {
     cerrarMenu();
+    document.body.style.overflow = 'hidden';
     document.getElementById("tarjeta-activaciones").style.display = "none";
     document.getElementById("tarjeta-tools").style.display = "none";
     document.getElementById("tarjeta-soporte").style.display = "none";
@@ -5224,6 +5315,7 @@ function abrirSoporte() {
 }
 
 function cerrarSoporte() {
+    document.body.style.overflow = '';
     document.getElementById("tarjeta-activaciones").style.display = "block";
     document.getElementById("tarjeta-tools").style.display = "block";
     document.getElementById("tarjeta-soporte").style.display = "block";
@@ -5237,6 +5329,7 @@ function cerrarSoporte() {
 // ===============================
 function abrirIMEI() {
     cerrarMenu();
+    document.body.style.overflow = 'hidden';
     document.getElementById("tarjeta-activaciones").style.display = "none";
     document.getElementById("tarjeta-tools").style.display = "none";
     document.getElementById("tarjeta-soporte").style.display = "none";
@@ -5245,6 +5338,7 @@ function abrirIMEI() {
 }
 
 function cerrarIMEI() {
+    document.body.style.overflow = '';
     document.getElementById("tarjeta-activaciones").style.display = "block";
     document.getElementById("tarjeta-tools").style.display = "block";
     document.getElementById("tarjeta-soporte").style.display = "block";
@@ -5257,6 +5351,7 @@ function cerrarIMEI() {
 // ===============================
 function abrirArchivos() {
     cerrarMenu();
+    document.body.style.overflow = 'hidden';
     document.getElementById("tarjeta-activaciones").style.display = "none";
     document.getElementById("tarjeta-creditos").style.display = "none";
     document.getElementById("tarjeta-tools").style.display = "none";
@@ -5267,6 +5362,7 @@ function abrirArchivos() {
 }
 
 function cerrarArchivos() {
+    document.body.style.overflow = '';
     document.getElementById("tarjeta-activaciones").style.display = "block";
     document.getElementById("tarjeta-creditos").style.display = "block";
     document.getElementById("tarjeta-tools").style.display = "block";
@@ -5293,6 +5389,7 @@ if(buscadorArchivos) {
 // ===============================
 function abrirPagos() {
     cerrarMenu();
+    document.body.style.overflow = 'hidden';
     document.getElementById("tarjeta-activaciones").style.display = "none";
     document.getElementById("tarjeta-creditos").style.display = "none";
     document.getElementById("tarjeta-tools").style.display = "none";
@@ -5303,6 +5400,7 @@ function abrirPagos() {
 }
 
 function cerrarPagos() {
+    document.body.style.overflow = '';
     document.getElementById("tarjeta-activaciones").style.display = "block";
     document.getElementById("tarjeta-creditos").style.display = "block";
     document.getElementById("tarjeta-tools").style.display = "block";
@@ -5310,6 +5408,45 @@ function cerrarPagos() {
     document.getElementById("tarjeta-imei").style.display = "block";
     document.getElementById("tarjeta-archivos").style.display = "block";
     document.getElementById("menu-pagos").classList.add("hidden");
+}
+
+// ===============================
+// POLÍTICAS - ABRIR / CERRAR
+// ===============================
+function abrirPoliticas() {
+    document.getElementById('modal-politicas').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarPoliticas() {
+    document.getElementById('modal-politicas').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+// ===============================
+// CONDICIONES - ABRIR / CERRAR
+// ===============================
+function abrirCondiciones() {
+    document.getElementById('modal-condiciones').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarCondiciones() {
+    document.getElementById('modal-condiciones').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+// ===============================
+// AVISO LEGAL - ABRIR / CERRAR
+// ===============================
+function abrirAviso() {
+    document.getElementById('modal-aviso').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function cerrarAviso() {
+    document.getElementById('modal-aviso').classList.add('hidden');
+    document.body.style.overflow = '';
 }
 
 // ===============================
