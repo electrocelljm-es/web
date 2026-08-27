@@ -62,7 +62,69 @@
     nav {
         z-index: 50;
     }
-</style>
+
+    /* ===== NUEVO CARRUSEL DE ANUNCIO ===== */
+    @keyframes scroll-anuncio {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .animate-scroll-anuncio {
+        display: flex;
+        width: max-content;
+        animation: scroll-anuncio 25s linear infinite;
+    }
+
+    .animate-scroll-anuncio:hover {
+        animation-play-state: paused;
+    }
+
+    /* ===== ESTILOS PARA EL BUSCADOR ===== */
+    #overlay-busqueda {
+        z-index: 99999;
+    }
+    #resultados-busqueda {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    #resultados-busqueda::-webkit-scrollbar {
+        width: 4px;
+    }
+    #resultados-busqueda::-webkit-scrollbar-track {
+        background: #1e293b;
+    }
+    #resultados-busqueda::-webkit-scrollbar-thumb {
+        background: #22d3ee;
+        border-radius: 10px;
+    }
+    .resultado-item {
+        transition: background 0.15s;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+    }
+    .resultado-item:hover {
+        background: rgba(34, 211, 238, 0.08);
+    }
+    .resultado-item:last-child {
+        border-bottom: none;
+    }
+    .destacado {
+        background: rgba(34, 211, 238, 0.15);
+        border-left: 3px solid #22d3ee;
+    }
+
+    /* Responsive del buscador en móvil */
+    @media (max-width: 640px) {
+        #btn-buscar {
+            font-size: 16px;
+            padding: 6px;
+        }
+        #campo-busqueda {
+            font-size: 16px;
+            padding: 12px 16px;
+        }
+    }
+    </style>
 </head>
 <body class="text-slate-200">
 
@@ -560,6 +622,11 @@
               <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
            </span>
         </a>
+
+        <!-- ===== NUEVO BOTÓN DE BÚSQUEDA (LUPA) ===== -->
+        <button id="btn-buscar" class="text-white hover:text-cyan-400 transition-all text-xl sm:text-2xl ml-1 sm:ml-2 focus:outline-none" aria-label="Buscar">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
     </nav>
 
@@ -588,6 +655,36 @@
             </div>
         </div>
     </div>
+
+<!-- ==========================================
+     NUEVO CARRUSEL DE ANUNCIO (TEXTO EN VERDE)
+     ========================================== -->
+<div class="w-full bg-slate-900/50 border-y border-green-500/20 py-4 overflow-hidden relative group">
+    <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-900 to-transparent z-10"></div>
+    <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-900 to-transparent z-10"></div>
+
+    <div class="flex animate-scroll-anuncio whitespace-nowrap">
+        <!-- Repetimos el texto dos veces para efecto infinito -->
+        <div class="flex items-center gap-12 px-6 text-green-400 font-bold text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-wider">
+            <span>✦ SAMSUNG FRP ONLINE</span>
+            <span class="text-green-500/30">|</span>
+            <span>✦ XIAOMI FRP ONLINE</span>
+            <span class="text-green-500/30">|</span>
+            <span>✦ NOKIA HARD RESET/FRP ONLINE</span>
+            <span class="text-green-500/30">|</span>
+            <span>✦ HUAWEI / HONOR FRP ONLINE</span>
+        </div>
+        <div class="flex items-center gap-12 px-6 text-green-400 font-bold text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-wider" aria-hidden="true">
+            <span>✦ SAMSUNG FRP ONLINE</span>
+            <span class="text-green-500/30">|</span>
+            <span>✦ XIAOMI FRP ONLINE</span>
+            <span class="text-green-500/30">|</span>
+            <span>✦ NOKIA HARD RESET/FRP ONLINE</span>
+            <span class="text-green-500/30">|</span>
+            <span>✦ HUAWEI / HONOR FRP ONLINE</span>
+        </div>
+    </div>
+</div>
 
 <!-- ==========================================
      TITULO Y SUBTITULO
@@ -5005,6 +5102,108 @@ group-hover:scale-110 transition-all duration-500 shadow-xl shadow-cyan-400/10 g
     </div>
 </div>
 
+<!-- ==========================================
+     MODAL GENERADOR IMEI VIP (YA EXISTENTE)
+     ========================================== -->
+<div id="modal-generador-imei" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div class="relative w-full max-w-md bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl shadow-2xl border border-teal-500/30">
+        <button onclick="cerrarGeneradorIMEI()" class="absolute top-3 right-3 text-slate-400 hover:text-white text-xl transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="p-6">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 mx-auto bg-gradient-to-br from-teal-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-teal-500/30">
+                    <i class="fas fa-qrcode text-3xl text-white"></i>
+                </div>
+                <h2 class="text-2xl font-bold bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
+                    GENERADOR IMEI VIP
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">Herramienta gratuita para nuestros clientes</p>
+                <div class="flex justify-center gap-2 mt-2">
+                    <span class="text-[8px] bg-teal-500/20 text-teal-400 px-2 py-0.5 rounded-full">🎁 100% GRATIS</span>
+                    <span class="text-[8px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">✨ IMEIs Únicos</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="text-xs text-slate-400 block mb-1">
+                    <i class="fas fa-microchip mr-1"></i> TAC (Primeros 8 dígitos)
+                </label>
+                <div class="flex gap-2">
+                    <input type="text" id="imei-tac" maxlength="8" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-teal-500 transition" placeholder="Ej: 35623412" value="35623412">
+                    <button onclick="generarTACAleatorio()" class="bg-teal-500/20 hover:bg-teal-500 text-teal-400 hover:text-white px-3 py-2 rounded-lg transition text-xs font-bold">
+                        <i class="fas fa-dice"></i> ALEATORIO
+                    </button>
+                </div>
+            </div>
+            <div class="bg-slate-800/50 rounded-lg p-3 mb-4 text-center border border-slate-700">
+                <div class="flex justify-between items-center">
+                    <span class="text-[10px] text-slate-400">🎲 IMEIs generados hoy</span>
+                    <span id="imei-contador" class="text-teal-400 font-bold text-lg">0</span>
+                </div>
+                <div class="flex justify-between items-center mt-1">
+                    <span class="text-[10px] text-slate-400">💎 Únicos en tu sesión</span>
+                    <span id="imei-contador-unico" class="text-emerald-400 font-bold text-lg">0</span>
+                </div>
+            </div>
+            <button onclick="generarIMEI()" class="w-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold py-3 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg shadow-teal-500/30 mb-4">
+                <i class="fas fa-magic mr-2"></i> GENERAR IMEI
+            </button>
+            <div id="imei-resultado-container" class="hidden bg-slate-800/80 rounded-xl p-4 mb-4 border border-teal-500/30">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] text-teal-400 uppercase tracking-wider">✅ IMEI generado</span>
+                    <span class="text-[8px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded-full">Válido</span>
+                </div>
+                <div class="flex items-center justify-between gap-3">
+                    <code id="imei-generado" class="text-white font-mono text-lg tracking-wider bg-slate-900/50 px-3 py-2 rounded-lg flex-1 text-center">---</code>
+                    <button onclick="copiarIMEI()" class="bg-teal-500/20 hover:bg-teal-500 text-teal-400 hover:text-white px-3 py-2 rounded-lg transition">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-wider">
+                        <i class="fas fa-history mr-1"></i> Últimos 5 generados
+                    </span>
+                    <button onclick="limpiarHistorialIMEI()" class="text-[8px] text-red-400 hover:text-red-300 transition">Limpiar</button>
+                </div>
+                <div id="imei-historial" class="bg-slate-800/30 rounded-lg p-2 max-h-28 overflow-y-auto space-y-1">
+                    <p class="text-[10px] text-slate-500 text-center py-2">Aún no hay IMEIs generados</p>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-700 text-center">
+                <p class="text-[8px] text-slate-500">
+                    <i class="fas fa-shield-alt mr-1"></i> Los IMEIs son generados aleatoriamente y son estructuralmente válidos.<br>
+                    Herramienta exclusiva para clientes VIP.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
+     NUEVO OVERLAY DE BÚSQUEDA (LUPA)
+     ========================================== -->
+<div id="overlay-busqueda" class="hidden fixed inset-0 w-full h-full bg-slate-950/95 backdrop-blur-md z-[100] animate-fade-in flex items-start justify-center pt-20 px-4">
+    <div class="w-full max-w-2xl relative">
+        <button id="btn-cerrar-busqueda" class="absolute -top-12 right-0 text-slate-400 hover:text-white text-3xl transition z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="relative">
+            <div class="flex items-center bg-slate-800/70 border border-cyan-400/30 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/10">
+                <div class="pl-5">
+                    <i class="fas fa-search text-cyan-400/70 text-lg"></i>
+                </div>
+                <input type="text" id="campo-busqueda" placeholder="Buscar licencias, herramientas, servicios..." 
+                       class="w-full bg-transparent border-none text-white px-5 py-5 text-base focus:ring-0 outline-none placeholder:text-slate-500 font-medium">
+            </div>
+            <div id="resultados-busqueda" class="mt-4 bg-slate-900/90 border border-slate-700 rounded-xl overflow-hidden shadow-2xl max-h-[60vh] overflow-y-auto">
+                <p class="text-slate-400 text-sm text-center py-6">Escribe para comenzar a buscar...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 // ===============================
 // AVISO WEB EN MANTENIMIENTO 
@@ -5934,300 +6133,272 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('🔒 Protecciones activadas');
 })();
-</script>
-    <!-- ==========================================
-         MODAL GENERADOR IMEI VIP
-         ========================================== -->
-    <div id="modal-generador-imei" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
-        <div class="relative w-full max-w-md bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl shadow-2xl border border-teal-500/30">
-            
-            <button onclick="cerrarGeneradorIMEI()" class="absolute top-3 right-3 text-slate-400 hover:text-white text-xl transition z-10">
-                <i class="fas fa-times"></i>
-            </button>
 
-            <div class="p-6">
-                <div class="text-center mb-6">
-                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-teal-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-teal-500/30">
-                        <i class="fas fa-qrcode text-3xl text-white"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
-                        GENERADOR IMEI VIP
-                    </h2>
-                    <p class="text-xs text-slate-400 mt-1">Herramienta gratuita para nuestros clientes</p>
-                    <div class="flex justify-center gap-2 mt-2">
-                        <span class="text-[8px] bg-teal-500/20 text-teal-400 px-2 py-0.5 rounded-full">🎁 100% GRATIS</span>
-                        <span class="text-[8px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">✨ IMEIs Únicos</span>
-                    </div>
-                </div>
+// ==========================================
+// NUEVO: BUSCADOR GENERAL (LUPA)
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos del buscador
+    const btnBuscar = document.getElementById('btn-buscar');
+    const overlayBusqueda = document.getElementById('overlay-busqueda');
+    const btnCerrarBusqueda = document.getElementById('btn-cerrar-busqueda');
+    const campoBusqueda = document.getElementById('campo-busqueda');
+    const resultadosContainer = document.getElementById('resultados-busqueda');
 
-                <div class="mb-4">
-                    <label class="text-xs text-slate-400 block mb-1">
-                        <i class="fas fa-microchip mr-1"></i> TAC (Primeros 8 dígitos)
-                    </label>
-                    <div class="flex gap-2">
-                        <input type="text" id="imei-tac" maxlength="8" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-teal-500 transition" placeholder="Ej: 35623412" value="35623412">
-                        <button onclick="generarTACAleatorio()" class="bg-teal-500/20 hover:bg-teal-500 text-teal-400 hover:text-white px-3 py-2 rounded-lg transition text-xs font-bold">
-                            <i class="fas fa-dice"></i> ALEATORIO
-                        </button>
-                    </div>
-                </div>
-
-                <div class="bg-slate-800/50 rounded-lg p-3 mb-4 text-center border border-slate-700">
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] text-slate-400">🎲 IMEIs generados hoy</span>
-                        <span id="imei-contador" class="text-teal-400 font-bold text-lg">0</span>
-                    </div>
-                    <div class="flex justify-between items-center mt-1">
-                        <span class="text-[10px] text-slate-400">💎 Únicos en tu sesión</span>
-                        <span id="imei-contador-unico" class="text-emerald-400 font-bold text-lg">0</span>
-                    </div>
-                </div>
-
-                <button onclick="generarIMEI()" class="w-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold py-3 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg shadow-teal-500/30 mb-4">
-                    <i class="fas fa-magic mr-2"></i> GENERAR IMEI
-                </button>
-
-                <div id="imei-resultado-container" class="hidden bg-slate-800/80 rounded-xl p-4 mb-4 border border-teal-500/30">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-[10px] text-teal-400 uppercase tracking-wider">✅ IMEI generado</span>
-                        <span class="text-[8px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded-full">Válido</span>
-                    </div>
-                    <div class="flex items-center justify-between gap-3">
-                        <code id="imei-generado" class="text-white font-mono text-lg tracking-wider bg-slate-900/50 px-3 py-2 rounded-lg flex-1 text-center">---</code>
-                        <button onclick="copiarIMEI()" class="bg-teal-500/20 hover:bg-teal-500 text-teal-400 hover:text-white px-3 py-2 rounded-lg transition">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="mt-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-[10px] text-slate-400 uppercase tracking-wider">
-                            <i class="fas fa-history mr-1"></i> Últimos 5 generados
-                        </span>
-                        <button onclick="limpiarHistorialIMEI()" class="text-[8px] text-red-400 hover:text-red-300 transition">Limpiar</button>
-                    </div>
-                    <div id="imei-historial" class="bg-slate-800/30 rounded-lg p-2 max-h-28 overflow-y-auto space-y-1">
-                        <p class="text-[10px] text-slate-500 text-center py-2">Aún no hay IMEIs generados</p>
-                    </div>
-                </div>
-
-                <div class="mt-4 pt-3 border-t border-slate-700 text-center">
-                    <p class="text-[8px] text-slate-500">
-                        <i class="fas fa-shield-alt mr-1"></i> Los IMEIs son generados aleatoriamente y son estructuralmente válidos.<br>
-                        Herramienta exclusiva para clientes VIP.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    // ==========================================
-    // GENERADOR IMEI VIP - FUNCIONES (VERSIÓN SEGURA)
-    // ==========================================
-    
-    // Algoritmo de Luhn
-    function calcularDigitoLuhn(imeiSinDigito) {
-        let suma = 0;
-        let duplicar = true;
-        for (let i = imeiSinDigito.length - 1; i >= 0; i--) {
-            let digito = parseInt(imeiSinDigito.charAt(i));
-            if (duplicar) {
-                digito *= 2;
-                if (digito > 9) digito = digito.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
-            }
-            suma += digito;
-            duplicar = !duplicar;
-        }
-        return (10 - (suma % 10)) % 10;
-    }
-
-    function generarIMEICompleto(tac, snr) {
-        const imei14 = tac.toString() + snr.toString().padStart(6, '0');
-        return imei14 + calcularDigitoLuhn(imei14);
-    }
-
-    function getHistorialIMEI() {
-        try {
-            const h = localStorage.getItem('jf_imei_historial');
-            return h ? JSON.parse(h) : [];
-        } catch(e) { return []; }
-    }
-
-    function guardarHistorialIMEI(h) {
-        localStorage.setItem('jf_imei_historial', JSON.stringify(h));
-    }
-
-    function getContadorHoy() {
-        try {
-            const hoy = new Date().toDateString();
-            const data = localStorage.getItem('jf_imei_contador');
-            if (!data) return { fecha: hoy, total: 0, unicos: 0 };
-            const p = JSON.parse(data);
-            if (p.fecha !== hoy) return { fecha: hoy, total: 0, unicos: 0 };
-            return p;
-        } catch(e) { return { fecha: new Date().toDateString(), total: 0, unicos: 0 }; }
-    }
-
-    function guardarContadorHoy(total, unicos) {
-        const hoy = new Date().toDateString();
-        localStorage.setItem('jf_imei_contador', JSON.stringify({ fecha: hoy, total: total, unicos: unicos }));
-    }
-
-    function generarSNR() {
-        return Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-    }
-
-    function generarTACAleatorio() {
-        const primeros = Math.floor(Math.random() * 7) + 3;
-        const resto = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
-        return primeros + resto;
-    }
-
-    function actualizarHistorialVisual() {
-        const historial = getHistorialIMEI();
-        const container = document.getElementById('imei-historial');
-        if (!container) return;
-        if (historial.length === 0) {
-            container.innerHTML = '<p class="text-[10px] text-slate-500 text-center py-2">Aún no hay IMEIs generados</p>';
-            return;
-        }
-        container.innerHTML = historial.slice(0,5).map(imei => `
-            <div class="flex items-center justify-between bg-slate-800/50 px-2 py-1 rounded text-[10px]">
-                <code class="text-teal-300 font-mono">${imei}</code>
-                <button onclick="copiarIMEIHistorial('${imei}')" class="text-slate-400 hover:text-teal-400 transition">
-                    <i class="fas fa-copy text-[9px]"></i>
-                </button>
-            </div>
-        `).join('');
-    }
-
-    // Función para mostrar notificación sin afectar otras funciones
-    function mostrarNotif(mensaje) {
-        const notif = document.createElement('div');
-        notif.className = 'fixed bottom-6 right-6 bg-slate-800 text-white text-xs px-4 py-2 rounded-lg shadow-lg z-[200]';
-        notif.innerHTML = mensaje;
-        document.body.appendChild(notif);
-        setTimeout(() => notif.remove(), 2000);
-    }
-
-    // Funciones globales
-    window.generarIMEI = function() {
-        const tacInput = document.getElementById('imei-tac');
-        if (!tacInput) return;
-        let tac = tacInput.value.trim();
-        if (!tac || tac.length !== 8 || !/^\d+$/.test(tac)) {
-            mostrarNotif('⚠️ El TAC debe tener exactamente 8 dígitos numéricos');
-            return;
-        }
-        let historial = getHistorialIMEI();
-        let contador = getContadorHoy();
-        let nuevoIMEI = null;
-        for (let intentos = 0; intentos < 100; intentos++) {
-            const snr = generarSNR();
-            const imei = generarIMEICompleto(tac, snr);
-            if (!historial.includes(imei)) {
-                nuevoIMEI = imei;
-                break;
-            }
-        }
-        if (!nuevoIMEI) {
-            mostrarNotif('⚠️ No se pudo generar un IMEI único. Limpia el historial o cambia el TAC.');
-            return;
-        }
-        historial.unshift(nuevoIMEI);
-        if (historial.length > 10) historial = historial.slice(0, 10);
-        guardarHistorialIMEI(historial);
-        contador.total++;
-        contador.unicos = historial.length;
-        guardarContadorHoy(contador.total, contador.unicos);
-        
-        const imeiGeneradoSpan = document.getElementById('imei-generado');
-        if (imeiGeneradoSpan) imeiGeneradoSpan.textContent = nuevoIMEI;
-        const resultadoContainer = document.getElementById('imei-resultado-container');
-        if (resultadoContainer) resultadoContainer.classList.remove('hidden');
-        const contadorSpan = document.getElementById('imei-contador');
-        if (contadorSpan) contadorSpan.textContent = contador.total;
-        const contadorUnicoSpan = document.getElementById('imei-contador-unico');
-        if (contadorUnicoSpan) contadorUnicoSpan.textContent = contador.unicos;
-        actualizarHistorialVisual();
-        mostrarNotif('✅ IMEI generado correctamente');
-    };
-
-    window.generarTACAleatorio = function() {
-        const nuevoTAC = generarTACAleatorio();
-        const tacInput = document.getElementById('imei-tac');
-        if (tacInput) tacInput.value = nuevoTAC;
-        mostrarNotif('🎲 TAC aleatorio: ' + nuevoTAC);
-    };
-
-    window.copiarIMEI = function() {
-        const imeiSpan = document.getElementById('imei-generado');
-        if (!imeiSpan || imeiSpan.textContent === '---') {
-            mostrarNotif('⚠️ Primero genera un IMEI');
-            return;
-        }
-        navigator.clipboard.writeText(imeiSpan.textContent);
-        mostrarNotif('📋 IMEI copiado');
-    };
-
-    window.copiarIMEIHistorial = function(imei) {
-        navigator.clipboard.writeText(imei);
-        mostrarNotif('📋 IMEI copiado');
-    };
-
-    window.limpiarHistorialIMEI = function() {
-        if (confirm('¿Eliminar todo el historial de IMEIs generados?')) {
-            localStorage.removeItem('jf_imei_historial');
-            const contador = getContadorHoy();
-            guardarContadorHoy(contador.total, 0);
-            actualizarHistorialVisual();
-            const contadorUnicoSpan = document.getElementById('imei-contador-unico');
-            if (contadorUnicoSpan) contadorUnicoSpan.textContent = 0;
-            mostrarNotif('🗑️ Historial limpiado');
-        }
-    };
-
-    window.abrirGeneradorIMEI = function() {
-        const modal = document.getElementById('modal-generador-imei');
-        if (modal) {
-            modal.classList.remove('hidden');
+    // Abrir buscador
+    if (btnBuscar) {
+        btnBuscar.addEventListener('click', function() {
+            overlayBusqueda.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-            const contador = getContadorHoy();
-            const contadorSpan = document.getElementById('imei-contador');
-            if (contadorSpan) contadorSpan.textContent = contador.total;
-            const contadorUnicoSpan = document.getElementById('imei-contador-unico');
-            if (contadorUnicoSpan) contadorUnicoSpan.textContent = contador.unicos;
-            actualizarHistorialVisual();
-        }
-    };
+            setTimeout(() => campoBusqueda.focus(), 100);
+        });
+    }
 
-    window.cerrarGeneradorIMEI = function() {
-        const modal = document.getElementById('modal-generador-imei');
-        if (modal) {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-    };
+    // Cerrar buscador
+    function cerrarBuscador() {
+        overlayBusqueda.classList.add('hidden');
+        document.body.style.overflow = '';
+        campoBusqueda.value = '';
+        resultadosContainer.innerHTML = '<p class="text-slate-400 text-sm text-center py-6">Escribe para comenzar a buscar...</p>';
+    }
 
-    // Cerrar con ESC
+    if (btnCerrarBusqueda) {
+        btnCerrarBusqueda.addEventListener('click', cerrarBuscador);
+    }
+
+    overlayBusqueda.addEventListener('click', function(e) {
+        if (e.target === overlayBusqueda) cerrarBuscador();
+    });
+
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('modal-generador-imei');
-            if (modal && !modal.classList.contains('hidden')) {
-                cerrarGeneradorIMEI();
+        if (e.key === 'Escape' && !overlayBusqueda.classList.contains('hidden')) {
+            cerrarBuscador();
+        }
+        // Ctrl+K o Cmd+K para abrir búsqueda
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            if (overlayBusqueda.classList.contains('hidden')) {
+                btnBuscar.click();
+            } else {
+                cerrarBuscador();
             }
         }
     });
 
-    // Cerrar al hacer clic fuera
-    const modalElement = document.getElementById('modal-generador-imei');
-    if (modalElement) {
-        modalElement.addEventListener('click', function(e) {
-            if (e.target === this) cerrarGeneradorIMEI();
+    // Índice de búsqueda: palabras clave y su acción
+    const indiceBusqueda = [
+        // Licencias
+        { palabras: ['unlocktool', 'unlock tool', 'licencia unlocktool', 'unlocktool 1 año', 'unlocktool 6 meses', 'unlocktool 3 meses'], accion: 'licencias' },
+        { palabras: ['tsmtool', 'tsm tool', 'licencia tsmtool', 'tsmtool pro', 'tsmtool 1 año', 'tsmtool 6 meses', 'tsmtool 3 meses'], accion: 'licencias' },
+        { palabras: ['dft pro', 'dft', 'licencia dft', 'dft 1 año'], accion: 'licencias' },
+        { palabras: ['pandora', 'pandora tool', 'licencia pandora', 'pandora 1 año'], accion: 'licencias' },
+        { palabras: ['amt', 'android multi tool', 'licencia amt', 'amt 1 año', 'amt 6 meses', 'amt 3 meses'], accion: 'licencias' },
+        { palabras: ['chimera', 'chimera tool', 'licencia chimera', 'chimera premium', 'chimera professional', 'chimera basic'], accion: 'licencias' },
+        { palabras: ['nck', 'nck online', 'licencia nck', 'nck 1 año', 'nck 2 años'], accion: 'licencias' },
+        { palabras: ['rd power', 'rd power plus', 'rd power lg'], accion: 'licencias' },
+        { palabras: ['borneo', 'borneo schematic', 'licencia borneo'], accion: 'licencias' },
+        { palabras: ['dz', 'dzkj', 'dz kj', 'phonerepair', 'dzkj phonerepair'], accion: 'licencias' },
+        { palabras: ['cheetah', 'cheetah tool', 'licencia cheetah', 'cheetah pro'], accion: 'licencias' },
+        { palabras: ['moto king', 'moto king pro', 'licencia moto king'], accion: 'licencias' },
+        { palabras: ['mdm fix', 'mdm fix tool', 'licencia mdm fix'], accion: 'licencias' },
+        { palabras: ['sigma plus', 'licencia sigma', 'sigma 3 meses', 'sigma 1 mes'], accion: 'licencias' },
+        // Créditos
+        { palabras: ['creditos', 'compra creditos', 'comprar creditos', 'credito'], accion: 'creditos' },
+        { palabras: ['global unlocker', 'global unlocker pro', 'unlocker pro'], accion: 'creditos' },
+        { palabras: ['sim unlocker', 'sim unlocker pro'], accion: 'creditos' },
+        { palabras: ['fast unlocker', 'fast unlocker pro'], accion: 'creditos' },
+        { palabras: ['golden unlocker', 'golden unlocker pro'], accion: 'creditos' },
+        { palabras: ['general unlocker', 'general unlocker pro'], accion: 'creditos' },
+        { palabras: ['octoplus', 'octoplus samsung'], accion: 'creditos' },
+        { palabras: ['z3x', 'z3x samsung'], accion: 'creditos' },
+        { palabras: ['samkey', 'samkey read code', 'samkey tmo'], accion: 'creditos' },
+        { palabras: ['phoenix', 'phoenix service'], accion: 'creditos' },
+        { palabras: ['key-tool', 'key tool'], accion: 'creditos' },
+        { palabras: ['tira', 'tira unlocker'], accion: 'creditos' },
+        // Tools (renta)
+        { palabras: ['renta tools', 'alquiler tools', 'rentar tool', 'renta box', 'renta dongle'], accion: 'tools' },
+        { palabras: ['pandora tool', 'pandora box'], accion: 'tools' },
+        { palabras: ['dft pro', 'dft tool'], accion: 'tools' },
+        { palabras: ['unlocktool', 'unlock tool renta'], accion: 'tools' },
+        { palabras: ['nck dongle', 'nck online tool'], accion: 'tools' },
+        { palabras: ['amt tool', 'android multi tool renta'], accion: 'tools' },
+        { palabras: ['tsm tool', 'tsm tool pro'], accion: 'tools' },
+        { palabras: ['octoplus box', 'octoplus samsung'], accion: 'tools' },
+        { palabras: ['z3x box', 'z3x samsung'], accion: 'tools' },
+        { palabras: ['chimera tool', 'chimera renta'], accion: 'tools' },
+        { palabras: ['cheetah tool', 'cheetah pro'], accion: 'tools' },
+        { palabras: ['griffin', 'griffin unlocker'], accion: 'tools' },
+        // Soporte
+        { palabras: ['soporte remoto', 'soporte', 'ayuda remota', 'asistencia remota', 'agendar soporte'], accion: 'soporte' },
+        { palabras: ['motorola unlock', 'unlock motorola', 'moto g', 'moto razr', 'moto edge', 'moto g power', 'moto g play'], accion: 'soporte' },
+        { palabras: ['jdm', 'jdm tfn', 'samsung unlock', 'samsung repair', 's134dl', 's135dl', 's146vl', 's215dl', 'a037u', 'a055m', 'a055g', 'a146p', 'a146u', 'a215u', 'x216b', 'x216c', 'x216n', 'x218b', 'x218u', 'e166p', 'm166p'], accion: 'soporte' },
+        { palabras: ['unlock samsung account', 'samsung account', 'desbloquear cuenta samsung'], accion: 'soporte' },
+        { palabras: ['unlock huawei id', 'huawei id', 'desbloquear cuenta huawei'], accion: 'soporte' },
+        { palabras: ['unlock google account', 'google account', 'frp', 'desbloquear cuenta google'], accion: 'soporte' },
+        { palabras: ['unlock mi account', 'xiaomi account', 'cuenta xiaomi', 'mi account'], accion: 'soporte' },
+        { palabras: ['unlock network', 'desbloquear red', 'network unlock'], accion: 'soporte' },
+        { palabras: ['bypass icloud', 'icloud', 'fmi off', 'open menu', 'iphone bypass', 'ipad bypass'], accion: 'soporte' },
+        { palabras: ['bypass mdm', 'mdm', 'mdm bypass', 'samsung mdm', 'motorola mdm', 'iphone mdm'], accion: 'soporte' },
+        { palabras: ['bypass kg', 'kg bypass', 'samsung kg'], accion: 'soporte' },
+        // IMEI
+        { palabras: ['imei', 'servicios imei', 'reparar imei', 'registrar imei', 'cleaning imei'], accion: 'imei' },
+        { palabras: ['unlock by imei', 'imei unlock', 'desbloquear por imei'], accion: 'imei' },
+        { palabras: ['tracfone', 'at&t', 'metro', 'cricket', 'verizon', 't-mobile', 'iphone unlock', 'samsung unlock', 'motorola unlock'], accion: 'imei' },
+        // Archivos VIP
+        { palabras: ['archivos', 'descargas', 'descargar', 'firmware', 'flash', 'rom', 'stock rom', 'drivers', 'herramientas', 'programas'], accion: 'archivos' },
+        { palabras: ['odin', 'sp flash', 'qpst', 'qfil', 'adb', 'fastboot', 'frp bypass', 'samfw', 'frp hijacker'], accion: 'archivos' },
+        // Pagos
+        { palabras: ['pagos', 'metodos de pago', 'pagar', 'paypal', 'binance', 'usdt', 'banreservas', 'popular', 'bhd', 'transferencia'], accion: 'pagos' },
+        // Generador IMEI
+        { palabras: ['generador imei', 'imei generador', 'crear imei', 'imei vip', 'generar imei'], accion: 'generador' },
+        // Marcas y servicios generales
+        { palabras: ['samsung', 'apple', 'xiaomi', 'huawei', 'honor', 'motorola', 'tcl', 'realme', 'zte', 'oppo', 'vivo', 'oneplus', 'pixel', 'asus', 'alcatel', 'infinix', 'tecno', 'bmobile', 'sony'], accion: 'marca' },
+        { palabras: ['flash', 'unlock', 'frp', 'repair', 'bypass'], accion: 'marca' }
+    ];
+
+    // Función de búsqueda
+    function buscar(termino) {
+        if (!termino.trim()) {
+            resultadosContainer.innerHTML = '<p class="text-slate-400 text-sm text-center py-6">Escribe para comenzar a buscar...</p>';
+            return;
+        }
+
+        const lowerTerm = termino.toLowerCase().trim();
+        const resultados = [];
+
+        // Buscar en el índice
+        indiceBusqueda.forEach(item => {
+            for (let palabra of item.palabras) {
+                if (palabra.includes(lowerTerm) || lowerTerm.includes(palabra)) {
+                    // Evitar duplicados
+                    if (!resultados.some(r => r.accion === item.accion)) {
+                        resultados.push(item);
+                    }
+                    break;
+                }
+            }
+        });
+
+        // También buscar coincidencias parciales en las tarjetas de licencias (para términos no indexados)
+        // Esto lo haremos en el momento del clic, no en la búsqueda.
+
+        if (resultados.length === 0) {
+            resultadosContainer.innerHTML = `<p class="text-slate-400 text-sm text-center py-6">No se encontraron resultados para "<span class="text-cyan-400">${termino}</span>"</p>`;
+            return;
+        }
+
+        // Mostrar resultados
+        resultadosContainer.innerHTML = resultados.map(res => {
+            let nombreSeccion = '';
+            let icono = '';
+            let color = '';
+            switch(res.accion) {
+                case 'licencias': nombreSeccion = 'Activación de Licencias'; icono = 'fa-key'; color = 'blue'; break;
+                case 'creditos': nombreSeccion = 'Compra de Créditos'; icono = 'fa-coins'; color = 'green'; break;
+                case 'tools': nombreSeccion = 'Renta de Tools'; icono = 'fa-clock'; color = 'amber'; break;
+                case 'soporte': nombreSeccion = 'Soporte Remoto'; icono = 'fa-desktop'; color = 'purple'; break;
+                case 'imei': nombreSeccion = 'Servicios IMEI'; icono = 'fa-microchip'; color = 'pink'; break;
+                case 'archivos': nombreSeccion = 'Archivos VIP'; icono = 'fa-download'; color = 'orange'; break;
+                case 'pagos': nombreSeccion = 'Métodos de Pago'; icono = 'fa-credit-card'; color = 'cyan'; break;
+                case 'generador': nombreSeccion = 'Generador IMEI VIP'; icono = 'fa-qrcode'; color = 'red'; break;
+                case 'marca': nombreSeccion = 'Marcas / Servicios'; icono = 'fa-tags'; color = 'indigo'; break;
+                default: nombreSeccion = 'Sección'; icono = 'fa-chevron-circle-right'; color = 'slate';
+            }
+
+            return `
+                <div class="resultado-item px-4 py-3 hover:bg-slate-800/50 transition flex items-center gap-3 cursor-pointer" data-accion="${res.accion}">
+                    <div class="w-8 h-8 rounded-lg bg-${color}-500/10 flex items-center justify-center text-${color}-400">
+                        <i class="fas ${icono}"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm text-white font-medium">${nombreSeccion}</div>
+                        <div class="text-xs text-slate-400">${res.palabras.slice(0,3).join(', ')}</div>
+                    </div>
+                    <i class="fas fa-chevron-right text-slate-500 text-xs"></i>
+                </div>
+            `;
+        }).join('');
+
+        // Agregar evento de clic a cada resultado
+        resultadosContainer.querySelectorAll('.resultado-item').forEach(el => {
+            el.addEventListener('click', function() {
+                const accion = this.dataset.accion;
+                cerrarBuscador();
+                // Ejecutar la acción correspondiente
+                switch(accion) {
+                    case 'licencias':
+                        mostrarSeccion('activaciones');
+                        break;
+                    case 'creditos':
+                        mostrarSeccion('creditos');
+                        break;
+                    case 'tools':
+                        mostrarSeccion('tools');
+                        break;
+                    case 'soporte':
+                        mostrarSeccion('soporte');
+                        break;
+                    case 'imei':
+                        mostrarSeccion('imei');
+                        break;
+                    case 'archivos':
+                        mostrarSeccion('archivos');
+                        break;
+                    case 'pagos':
+                        mostrarSeccion('pagos');
+                        break;
+                    case 'generador':
+                        abrirGeneradorIMEI();
+                        break;
+                    case 'marca':
+                        // Para marcas, abrir el catálogo y mostrar el menú de marcas (ya está en el navbar)
+                        mostrarCatalogo();
+                        // Podríamos desplazarnos al navbar, pero es opcional
+                        break;
+                    default:
+                        mostrarCatalogo();
+                }
+            });
         });
     }
-    </script>
+
+    // Evento input en el campo de búsqueda
+    let timeoutBusqueda;
+    campoBusqueda.addEventListener('input', function() {
+        clearTimeout(timeoutBusqueda);
+        timeoutBusqueda = setTimeout(() => {
+            buscar(this.value);
+        }, 300);
+    });
+
+    // Al presionar Enter, seleccionar el primer resultado
+    campoBusqueda.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const primerResultado = resultadosContainer.querySelector('.resultado-item');
+            if (primerResultado) {
+                primerResultado.click();
+            }
+        }
+    });
+
+    // Función global para abrir el generador IMEI (ya existe)
+    // Asegurar que la función esté disponible
+    if (typeof abrirGeneradorIMEI !== 'function') {
+        window.abrirGeneradorIMEI = function() {
+            const modal = document.getElementById('modal-generador-imei');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                const contador = getContadorHoy();
+                const contadorSpan = document.getElementById('imei-contador');
+                if (contadorSpan) contadorSpan.textContent = contador.total;
+                const contadorUnicoSpan = document.getElementById('imei-contador-unico');
+                if (contadorUnicoSpan) contadorUnicoSpan.textContent = contador.unicos;
+                actualizarHistorialVisual();
+            }
+        };
+    }
+});
+</script>
 </body>
 </html>
