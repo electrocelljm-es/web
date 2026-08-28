@@ -6778,7 +6778,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // ==========================================
-        // 3. FUNCIÓN DE CONSULTA IMEI (PROXY SCRAPING)
+        // 3. FUNCIÓN DE CONSULTA IMEI (PROXY SCRAPING) MEJORADA
         // ==========================================
 
         async function consultarIMEI(imei) {
@@ -6796,108 +6796,118 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Deshabilitar botón
             btn.disabled = true;
             btn.textContent = 'Consultando...';
-
-            // Ocultar resultado anterior
             resultadoDiv.classList.add('hidden');
 
-            try {
-                // Usar un proxy CORS para hacer la petición
-                const proxyUrl = 'https://corsproxy.io/?';
-                const targetUrl = 'https://imeicheck.net/check-imei';
-                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl), {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-                    },
-                    body: new URLSearchParams({ imei: imei })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Error al consultar el IMEI. Código: ' + response.status);
+            // Probar varios proxies
+            const proxies = [
+                // Primero el más fiable
+                async () => {
+                    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://imeicheck.net/check-imei')}`;
+                    const res = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ imei: imei })
+                    });
+                    if (!res.ok) throw new Error('Código ' + res.status);
+                    return await res.text();
+                },
+                // Fallback con corsproxy.io
+                async () => {
+                    const url = 'https://corsproxy.io/?' + encodeURIComponent('https://imeicheck.net/check-imei');
+                    const res = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ imei: imei })
+                    });
+                    if (!res.ok) throw new Error('Código ' + res.status);
+                    return await res.text();
                 }
+            ];
 
-                const html = await response.text();
+            let html = '';
+            let lastError = '';
 
-                // Analizar el HTML para extraer los datos
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-
-                // Buscar por selectores típicos de imeicheck.net (puede variar)
-                // Intentar extraer información de diferentes formas
-                let marca = 'No disponible';
-                let modelo = 'No disponible';
-                let estado = 'Desconocido';
-                let operador = 'No disponible';
-
-                // Buscar en el HTML con expresiones regulares o selectores
-                // Método 1: buscar etiquetas <strong> o <span> con textos conocidos
-                const texto = doc.body.innerText;
-
-                // Buscar patrón "Marca:" o "Brand:"
-                const marcaMatch = texto.match(/(?:Marca|Brand)\s*[:;]\s*([^\n]+)/i);
-                if (marcaMatch) marca = marcaMatch[1].trim();
-
-                // Modelo
-                const modeloMatch = texto.match(/(?:Modelo|Model)\s*[:;]\s*([^\n]+)/i);
-                if (modeloMatch) modelo = modeloMatch[1].trim();
-
-                // Estado (Clean/Blacklist)
-                const estadoMatch = texto.match(/(?:Estado|Status|Blacklist)\s*[:;]\s*([^\n]+)/i);
-                if (estadoMatch) {
-                    let est = estadoMatch[1].trim();
-                    if (est.toLowerCase().includes('clean')) estado = 'Clean';
-                    else if (est.toLowerCase().includes('blacklist') || est.toLowerCase().includes('bloqueado')) estado = 'Blacklist';
-                    else estado = est;
+            for (const proxyFn of proxies) {
+                try {
+                    html = await proxyFn();
+                    if (html && html.length > 100) break; // respuesta válida
+                } catch (e) {
+                    lastError = e.message;
+                    console.warn('Proxy falló:', e.message);
                 }
+            }
 
-                // Operador
-                const operadorMatch = texto.match(/(?:Operador|Carrier|Network)\s*[:;]\s*([^\n]+)/i);
-                if (operadorMatch) operador = operadorMatch[1].trim();
-
-                // Si no se encontró nada, mostrar mensaje
-                if (marca === 'No disponible' && modelo === 'No disponible') {
-                    // Intentar buscar en elementos específicos
-                    const elementos = doc.querySelectorAll('p, div, span, td');
-                    for (let el of elementos) {
-                        const txt = el.innerText.trim();
-                        if (txt.includes('Brand')) {
-                            const next = el.nextElementSibling;
-                            if (next) marca = next.innerText.trim();
-                        }
-                        if (txt.includes('Model')) {
-                            const next = el.nextElementSibling;
-                            if (next) modelo = next.innerText.trim();
-                        }
-                    }
-                }
-
-                // Mostrar resultados
-                marcaSpan.textContent = marca;
-                modeloSpan.textContent = modelo;
-                estadoSpan.textContent = estado;
-                estadoSpan.className = 'valor ' + (estado.toLowerCase().includes('clean') ? 'clean' : 'blacklist');
-                operadorSpan.textContent = operador;
-
-                resultadoDiv.classList.remove('hidden');
-
-                // Guardar en historial (localStorage)
-                let historial = JSON.parse(localStorage.getItem('jf_imei_consultas')) || [];
-                historial.unshift({ imei, marca, modelo, estado, operador, fecha: new Date().toLocaleString() });
-                if (historial.length > 10) historial = historial.slice(0, 10);
-                localStorage.setItem('jf_imei_consultas', JSON.stringify(historial));
-                mostrarHistorial(historial);
-
-            } catch (error) {
-                console.error('Error en consulta IMEI:', error);
-                alert('No se pudo consultar el IMEI. Intenta más tarde o verifica tu conexión. Error: ' + error.message);
-            } finally {
+            if (!html) {
+                alert('No se pudo consultar el IMEI. Intenta más tarde.\nError: ' + lastError);
                 btn.disabled = false;
                 btn.textContent = 'Consultar';
+                return;
             }
+
+            // Parsear el HTML con expresiones regulares y DOMParser
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const texto = doc.body.innerText;
+
+            let marca = 'No disponible';
+            let modelo = 'No disponible';
+            let estado = 'Desconocido';
+            let operador = 'No disponible';
+
+            // Buscar patrones comunes
+            const marcaMatch = texto.match(/(?:Marca|Brand)\s*[:;]\s*([^\n]+)/i);
+            if (marcaMatch) marca = marcaMatch[1].trim();
+
+            const modeloMatch = texto.match(/(?:Modelo|Model)\s*[:;]\s*([^\n]+)/i);
+            if (modeloMatch) modelo = modeloMatch[1].trim();
+
+            const estadoMatch = texto.match(/(?:Estado|Status|Blacklist)\s*[:;]\s*([^\n]+)/i);
+            if (estadoMatch) {
+                let est = estadoMatch[1].trim();
+                if (est.toLowerCase().includes('clean') || est.toLowerCase().includes('limpi')) estado = 'Clean';
+                else if (est.toLowerCase().includes('blacklist') || est.toLowerCase().includes('bloque')) estado = 'Blacklist';
+                else estado = est;
+            }
+
+            const operadorMatch = texto.match(/(?:Operador|Carrier|Network)\s*[:;]\s*([^\n]+)/i);
+            if (operadorMatch) operador = operadorMatch[1].trim();
+
+            // Si no se encuentra, intentar con elementos HTML
+            if (marca === 'No disponible' && modelo === 'No disponible') {
+                const elementos = doc.querySelectorAll('p, div, span, td');
+                for (let el of elementos) {
+                    const txt = el.innerText.trim();
+                    if (txt.match(/Brand/i) && !marcaMatch) {
+                        const next = el.nextElementSibling;
+                        if (next) marca = next.innerText.trim();
+                    }
+                    if (txt.match(/Model/i) && !modeloMatch) {
+                        const next = el.nextElementSibling;
+                        if (next) modelo = next.innerText.trim();
+                    }
+                }
+            }
+
+            // Mostrar resultados
+            marcaSpan.textContent = marca;
+            modeloSpan.textContent = modelo;
+            estadoSpan.textContent = estado;
+            estadoSpan.className = 'valor ' + (estado.toLowerCase().includes('clean') ? 'clean' : 'blacklist');
+            operadorSpan.textContent = operador;
+
+            resultadoDiv.classList.remove('hidden');
+
+            // Guardar historial
+            let historial = JSON.parse(localStorage.getItem('jf_imei_consultas')) || [];
+            historial.unshift({ imei, marca, modelo, estado, operador, fecha: new Date().toLocaleString() });
+            if (historial.length > 10) historial = historial.slice(0, 10);
+            localStorage.setItem('jf_imei_consultas', JSON.stringify(historial));
+            mostrarHistorial(historial);
+
+            btn.disabled = false;
+            btn.textContent = 'Consultar';
         }
 
         function mostrarHistorial(historial) {
